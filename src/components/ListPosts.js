@@ -7,8 +7,7 @@ class ListPosts extends Component {
     render() {
         let {posts} = this.props;
         posts = (posts[0]) ? posts[0] : [];
-
-        console.log(posts);
+        posts = posts.filter((post) => !post.deleted);
 
         return (
             <Grid>
@@ -21,15 +20,17 @@ class ListPosts extends Component {
                     <Row className="show-grid">
                         <Panel>
                             <Col xs={1} md={1}>
-                                <Button bsStyle="link"><Glyphicon glyph="thumbs-up"/> </Button>
-                                <br/>
-                                <span>{post.voteScore}</span>
-                                <br/>
-                                <Button bsStyle="link"><Glyphicon glyph="thumbs-down"/> </Button>
+                                <div style={{display: 'grid'}}>
+                                    <Button bsStyle="link"><Glyphicon glyph="thumbs-up"/> </Button>
+                                    <span>{post.voteScore}</span>
+                                    <Button bsStyle="link"><Glyphicon glyph="thumbs-down"/> </Button>
+
+                                </div>
+
                             </Col>
                             <Col xs={11} md={11}>
                                 <h3>{post.title}</h3>
-                                <p>{post.body.slice(1,500)} ... </p>
+                                <p>{post.body.slice(0, 200)}... </p>
                             </Col>
                         </Panel>
                     </Row>
