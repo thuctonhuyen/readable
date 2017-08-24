@@ -1,13 +1,21 @@
 import React, {Component} from 'react';
 import '../App.css';
-import NavigationBar from './Navbar';
+import NavigationBar from './NavigationBar';
 import ListPosts from './ListPosts'
 import AddPostModal from './AddPostModal'
 import {Grid, Row, Col, PageHeader} from 'react-bootstrap'
-
-
+import {fetchAllCategories} from '../actions/categories_actions';
+import {fetchAllPosts} from '../actions/posts_actions';
+import {connect} from 'react-redux'
 
 class App extends Component {
+
+    componentDidMount() {
+        const {dispatch} = this.props;
+        dispatch(fetchAllCategories());
+        dispatch(fetchAllPosts());
+    }
+
 
     render() {
         return (
@@ -26,4 +34,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect()(App);

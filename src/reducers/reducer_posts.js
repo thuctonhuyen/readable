@@ -1,18 +1,17 @@
-const initialState = [
-    {
-        id: null,
-        timestamp: null,
-        title: null,
-        body: null,
-        author: null,
-        category: null,
-        voteScore: null,
-        deleted: null
+import * as action_types from '../action_types/action_types'
+
+function posts (state = [], action) {
+    switch (action.type) {
+        case action_types.GET_ALL_POSTS:
+            return [
+                ...state,
+                action.posts
+            ];
+
+        default:
+            return state;
+
     }
-];
-
-const posts = (state = [], action) => {
-
 }
 
 export default posts;

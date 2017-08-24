@@ -1,14 +1,14 @@
 import * as ReadAPIUtil from '../utils/ReadAPI';
+import * as action_types from '../action_types/action_types'
 
-export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 
-export const receiveCategories = categories => ({
-   type: RECEIVE_CATEGORIES,
+export const getAllCategories = categories => ({
+   type: action_types.GET_ALL_CATEGORIES,
     categories
 });
 
-export const fetchCategories = () => dispatch => (
+export const fetchAllCategories = () => dispatch => (
   ReadAPIUtil
       .getAllCategories()
-      .then(categories => dispatch(receiveCategories(categories)))
+      .then(data => dispatch(getAllCategories(data)))
 );
