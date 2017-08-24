@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import '../App.css';
-import Navbar from './Navbar';
-import {Row, Col} from 'react-bootstrap'
+import NavigationBar from './Navbar';
+import ListPosts from './ListPosts'
+import {Grid, Row, Col, PageHeader} from 'react-bootstrap'
 
 
 class App extends Component {
 
     render() {
         return (
-            <div className="App container">
-                <Row>
-                    <Col xs={8} xsOffset={4}><Navbar/></Col>
-                </Row>
-            </div>
+            <Grid className="App">
+                <Row><NavigationBar/></Row>
+                <Row><ListPosts/> </Row>
+            </Grid>
         );
     }
 }
