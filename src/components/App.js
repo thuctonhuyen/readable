@@ -10,8 +10,12 @@ class App extends Component {
     render() {
         return (
             <Grid className="App">
-                <Row><NavigationBar/></Row>
-                <Row><ListPosts/> </Row>
+                <Row>
+                    <NavigationBar/>
+                </Row>
+                <Row>
+                    <ListPosts/>
+                </Row>
             </Grid>
         );
     }
