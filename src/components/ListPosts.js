@@ -5,8 +5,10 @@ import {connect} from 'react-redux'
 
 class ListPosts extends Component {
     render() {
-        let {posts} = this.prop;
-        posts = (posts) ? posts : [];
+        let {posts} = this.props;
+        posts = (posts[0]) ? posts[0] : [];
+
+        console.log(posts);
 
         return (
             <Grid>
@@ -27,7 +29,7 @@ class ListPosts extends Component {
                             </Col>
                             <Col xs={11} md={11}>
                                 <h3>{post.title}</h3>
-                                <p>{post.body.slice(1, 100)} ... </p>
+                                <p>{post.body.slice(1,500)} ... </p>
                             </Col>
                         </Panel>
                     </Row>
@@ -39,10 +41,10 @@ class ListPosts extends Component {
     }
 }
 
-function mapStateToProps({posts}) {
+function mapStateToProps(state) {
     return {
-        posts
+        posts: state.posts
     }
 }
 
-export default connect()(ListPosts);
+export default connect(mapStateToProps)(ListPosts);
