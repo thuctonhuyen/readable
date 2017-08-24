@@ -13,104 +13,24 @@ class ListPosts extends Component {
                 <Row className="show-grid">
                     <Panel>
                         <Col xs={1} md={1}>
-                            <Glyphicon glyph="thumbs-up"/>
+                            <Button bsStyle="link"><Glyphicon glyph="thumbs-up"/> </Button>
                             <br/>
                             <span>1235</span>
                             <br/>
-                            <Glyphicon glyph="thumbs-down"/>
+                            <Button bsStyle="link"><Glyphicon glyph="thumbs-down"/> </Button>
                         </Col>
                         <Col xs={11} md={11}>
                             <h3>
                                 Is react something worth learning?
                             </h3>
+                            <p>
+                                Brief intro ........
+                            </p>
                         </Col>
                     </Panel>
                 </Row>
 
-                <Row className="show-grid">
-                    <Panel>
-                        <Col xs={1} md={1}>
-                            <Glyphicon glyph="thumbs-up"/>
-                            <br/>
-                            <span>1235</span>
-                            <br/>
-                            <Glyphicon glyph="thumbs-down"/>
-                        </Col>
-                        <Col xs={11} md={11}>
-                            <h3>
-                                Is react something worth learning?
-                            </h3>
-                        </Col>
-                    </Panel>
-                </Row>
 
-                <Row className="show-grid">
-                    <Panel>
-                        <Col xs={1} md={1}>
-                            <Glyphicon glyph="thumbs-up"/>
-                            <br/>
-                            <span>1235</span>
-                            <br/>
-                            <Glyphicon glyph="thumbs-down"/>
-                        </Col>
-                        <Col xs={11} md={11}>
-                            <h3>
-                                Is react something worth learning?
-                            </h3>
-                        </Col>
-                    </Panel>
-                </Row>
-
-                <Row className="show-grid">
-                    <Panel>
-                        <Col xs={1} md={1}>
-                            <Glyphicon glyph="thumbs-up"/>
-                            <br/>
-                            <span>1235</span>
-                            <br/>
-                            <Glyphicon glyph="thumbs-down"/>
-                        </Col>
-                        <Col xs={11} md={11}>
-                            <h3>
-                                Is react something worth learning?
-                            </h3>
-                        </Col>
-                    </Panel>
-                </Row>
-
-                <Row className="show-grid">
-                    <Panel>
-                        <Col xs={1} md={1}>
-                            <Glyphicon glyph="thumbs-up"/>
-                            <br/>
-                            <span>1235</span>
-                            <br/>
-                            <Glyphicon glyph="thumbs-down"/>
-                        </Col>
-                        <Col xs={11} md={11}>
-                            <h3>
-                                Is react something worth learning?
-                            </h3>
-                        </Col>
-                    </Panel>
-                </Row>
-
-                <Row className="show-grid">
-                    <Panel>
-                        <Col xs={1} md={1}>
-                            <Glyphicon glyph="thumbs-up"/>
-                            <br/>
-                            <span>1235</span>
-                            <br/>
-                            <Glyphicon glyph="thumbs-down"/>
-                        </Col>
-                        <Col xs={11} md={11}>
-                            <h3>
-                                Is react something worth learning?
-                            </h3>
-                        </Col>
-                    </Panel>
-                </Row>
 
             </Grid>
 

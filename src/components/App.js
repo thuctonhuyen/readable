@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import '../App.css';
 import NavigationBar from './Navbar';
 import ListPosts from './ListPosts'
+import AddPostModal from './AddPostModal'
 import {Grid, Row, Col, PageHeader} from 'react-bootstrap'
+
 
 
 class App extends Component {
@@ -16,6 +18,9 @@ class App extends Component {
                 <Row>
                     <ListPosts/>
                 </Row>
+                {/*<Row>*/}
+                    {/*<AddPostModal/>*/}
+                {/*</Row>*/}
             </Grid>
         );
     }
