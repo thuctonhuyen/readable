@@ -41,16 +41,17 @@ export const getDetailPost = (id) =>
         .then(res => res.json())
         .then(data => data);
 
-export const votePost = (post, voteType) =>
-    fetch(`${api}/posts/${post.id}`, {
+export const votePost = (id, voteType) =>
+    fetch(`${api}/posts/${id}`, {
         method: 'POST',
         headers: {
             ...headers,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(voteType)
-    }).then(res => res.json())
+        body: JSON.stringify({'option': voteType})
+    }).then(res => (res.json()))
         .then(data => data);
+
 
 export const editPost = (post, body) =>
     fetch(`${api}/posts/${post.id}`, {

@@ -29,8 +29,21 @@ export const addPostAPI = (body) => dispatch => (
 
 /* start SORT_POSTS */
 export const sortPosts = (key) => ({
-   type: action_types.SORT_POSTS,
+    type: action_types.SORT_POSTS,
     key
 });
 /* end SORT_POSTS */
+
+
+/* start VOTE_POST */
+export const votePost = (newPost) => ({
+    type: action_types.VOTE_POST,
+    newPost
+});
+
+export const votePostAPI = (id, option) => dispatch => (
+    ReadAPIUtil.votePost(id, option)
+        .then(newPost => dispatch(votePost(newPost)))
+);
+/* end VOTE_POST */
 

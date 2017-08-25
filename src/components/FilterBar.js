@@ -17,7 +17,9 @@ class FilterBar extends Component {
     render() {
         const {filters} = this.props;
         return (
-            <SplitButton  bsSize="small" pullRight bsStyle={'default'} title="Sort by" id="sort-by-dropdown" onSelect={(eventKey, event) => this.handleSelection(eventKey, event)}>
+            <SplitButton  bsSize="small" pullRight bsStyle={'default'}
+                          title="Sort by" id="sort-by-dropdown"
+                          onSelect={(eventKey, event) => this.handleSelection(eventKey, event)}>
                 <MenuItem eventKey={'vote'} active={filters.sortBy === 'vote'}>Popular Vote</MenuItem>
                 <MenuItem eventKey={'timestamp'} active={filters.sortBy === 'timestamp'}>Most Recent</MenuItem>
                 <MenuItem eventKey={'title'} active={filters.sortBy === 'title'}>Title</MenuItem>
