@@ -32,8 +32,10 @@ class ListPosts extends Component {
         const {posts, filters} = this.props;
 
         let showingPosts = (posts) ? posts : [];
-        showingPosts = showingPosts.filter((post) => !post.deleted);
-        showingPosts = this.sortPost(showingPosts, filters.sortBy);
+
+        if(showingPosts)
+            showingPosts = showingPosts.filter((post) => !post.deleted);
+            showingPosts = this.sortPost(showingPosts, filters.sortBy);
 
         return (
             <Grid>

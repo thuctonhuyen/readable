@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon} from 'react-bootstrap';
-
+import {fetchAllCategories} from '../actions/categories_actions';
+import {Link} from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap';
 
 class NavigationBar extends Component {
+
+
+    componentDidMount() {
+        const {dispatch, posts, categories, filters} = this.props;
+        dispatch(fetchAllCategories());
+    }
+
     handleSelect(e) {
         //e.preventDefault();
     }
@@ -15,7 +24,7 @@ class NavigationBar extends Component {
             <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">Readable</a>
+                        <Link to="/">Readable</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
@@ -24,7 +33,9 @@ class NavigationBar extends Component {
                         <NavItem eventKey={1} href="#">Hot <Glyphicon glyph="fire"></Glyphicon></NavItem>
                         <NavDropdown eventKey={3} title="Categories" id="basic-nav-dropdown">
                             {showingCategories.map((category) =>
-                                <MenuItem key={category.name}>{category.name}</MenuItem>
+                                <LinkContainer to={`/${category.name}`}>
+                                    <MenuItem>{category.name} </MenuItem>
+                                </LinkContainer>
                             )}
                         </NavDropdown>
                     </Nav>
