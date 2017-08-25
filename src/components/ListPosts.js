@@ -3,20 +3,38 @@ import {Grid, Row, Col, Panel, Button, Glyphicon, Clearfix} from 'react-bootstra
 import FilterBar from './FilterBar'
 import {connect} from 'react-redux'
 import {votePostAPI} from '../actions/posts_actions'
+import {fetchAllPosts} from '../actions/posts_actions';
+import sortOn from 'sort-on'
+
 
 class ListPosts extends Component {
+
+    sortPost(posts, option) {
+        if (option === 'voteScore')
+            option = `-${option}`;
+
+        return (sortOn(posts, option));
+
+    }
+
+    componentDidMount() {
+        const {dispatch, posts, categories, filters} = this.props;
+        dispatch(fetchAllPosts());
+    }
 
     handleOnClick = (id, option) => {
         const {dispatch} = this.props;
         dispatch(votePostAPI(id, option));
     };
 
-    render() {
-        const {posts} = this.props;
-        let showingPosts = (posts) ? posts : [];
 
-        console.log(showingPosts);
+    render() {
+        const {posts, filters} = this.props;
+
+        let showingPosts = (posts) ? posts : [];
         showingPosts = showingPosts.filter((post) => !post.deleted);
+        showingPosts = this.sortPost(showingPosts, filters.sortBy);
+
         return (
             <Grid>
                 <Row className="show-grid">
@@ -29,12 +47,12 @@ class ListPosts extends Component {
                             <Col xs={2} md={1}>
                                 <div style={{display: 'grid'}}>
                                     <Button bsStyle="link"
-                                            onClick={()=>this.handleOnClick(post.id, 'upVote')}>
+                                            onClick={() => this.handleOnClick(post.id, 'upVote')}>
                                         <Glyphicon glyph="thumbs-up"/>
                                     </Button>
                                     <span>{post.voteScore}</span>
                                     <Button bsStyle="link"
-                                            onClick={()=>this.handleOnClick(post.id, 'downVote')}>
+                                            onClick={() => this.handleOnClick(post.id, 'downVote')}>
                                         <Glyphicon glyph="thumbs-down"/>
                                     </Button>
                                 </div>
@@ -53,8 +71,9 @@ class ListPosts extends Component {
 }
 
 function mapStateToProps(state) {
+    const {posts, categories, filters} = state;
     return {
-        posts: state.posts
+        posts, categories, filters
     }
 }
 

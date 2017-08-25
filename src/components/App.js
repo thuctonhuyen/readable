@@ -5,15 +5,16 @@ import ListPosts from './ListPosts'
 import AddPostModal from './AddPostModal'
 import {Grid, Row, Col, PageHeader} from 'react-bootstrap'
 import {fetchAllCategories} from '../actions/categories_actions';
-import {fetchAllPosts} from '../actions/posts_actions';
+
 import {connect} from 'react-redux'
 
 class App extends Component {
 
     componentDidMount() {
-        const {dispatch} = this.props;
+        const {dispatch, posts, categories, filters} = this.props;
+
+        //TODO: later on should move into navigation bar
         dispatch(fetchAllCategories());
-        dispatch(fetchAllPosts());
     }
 
 
@@ -34,4 +35,13 @@ class App extends Component {
     }
 }
 
-export default connect()(App);
+function mapStateToProps(state) {
+    const { posts, categories, filters} = state;
+
+    return{
+        posts, categories, filters
+    }
+
+}
+
+export default connect(mapStateToProps)(App);

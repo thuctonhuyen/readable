@@ -1,9 +1,10 @@
 import * as action_types from '../action_types/action_types'
 const initialState =
     {
-        sortBy: 'vote',
+        sortBy: 'voteScore',
         categories: 'all'
     };
+
 function filters(state = initialState, action) {
     switch (action.type) {
         case action_types.CHANGE_SORT_BY_FILTER:
