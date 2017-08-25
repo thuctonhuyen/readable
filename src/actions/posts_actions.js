@@ -26,3 +26,11 @@ export const addPostAPI = (body) => dispatch => (
 );
 /* end ADD_POST */
 
+
+/* start SORT_POSTS */
+export const sortPosts = (key) => ({
+   type: action_types.SORT_POSTS,
+    key
+});
+/* end SORT_POSTS */
+

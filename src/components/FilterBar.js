@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
-import {ButtonGroup, Button, MenuItem, DropdownButton} from 'react-bootstrap'
+import {DropdownButton, MenuItem} from 'react-bootstrap'
+import {connect} from 'react-redux'
+import {sortPosts} from '../actions/posts_actions'
 
 
 class FilterBar extends Component {
 
+    handleSelection = (key, event) =>{
+        const {dispatch} = this.props;
+        dispatch(sortPosts(key));
+    };
+
+    //note active:
+
     render() {
         return (
-            <ButtonGroup justified>
-                <Button href="#">Sort by Vote</Button>
-                <Button href="#">Sort by Time</Button>
-                {/*<DropdownButton title="View by" id="bg-justified-dropdown">*/}
-                    {/*<MenuItem eventKey="1">10 items</MenuItem>*/}
-                    {/*<MenuItem eventKey="2">20 items</MenuItem>*/}
-                {/*</DropdownButton>*/}
-            </ButtonGroup>
-
+            <DropdownButton bsStyle={'default'} title="Sort by" id="sort-by-dropdown" onSelect={(eventKey, event) => this.handleSelection(eventKey, event)}>
+                <MenuItem eventKey={'vote'}>Vote</MenuItem>
+                <MenuItem eventKey={'timestamp'}>Time</MenuItem>
+                <MenuItem eventKey={'title'}>Title</MenuItem>
+            </DropdownButton>
         );
     }
 }
 
-export default FilterBar;
+export default connect()(FilterBar);

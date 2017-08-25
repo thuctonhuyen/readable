@@ -9,8 +9,8 @@ class NavigationBar extends Component {
     }
 
     render() {
-        let {categories} = this.props;
-        categories = (categories[0]) ? categories[0] : [];
+        const {categories} = this.props;
+        let showingCategories = (categories) ? categories : [];
         return (
             <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
@@ -23,7 +23,7 @@ class NavigationBar extends Component {
                     <Nav>
                         <NavItem eventKey={1} href="#">Hot <Glyphicon glyph="fire"></Glyphicon></NavItem>
                         <NavDropdown eventKey={3} title="Categories" id="basic-nav-dropdown">
-                            {categories.map((category) =>
+                            {showingCategories.map((category) =>
                                 <MenuItem key={category.name}>{category.name}</MenuItem>
                             )}
                         </NavDropdown>

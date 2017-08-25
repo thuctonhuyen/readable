@@ -4,10 +4,7 @@ function categories(state = [], action){
     const {type, categories} = action;
     switch(type){
         case action_types.GET_ALL_CATEGORIES:
-            return[
-                ...state,
-                categories
-            ];
+            return categories;
         default:
             return state;
 
