@@ -6,14 +6,18 @@ import {Grid, Row} from 'react-bootstrap'
 import {Route} from 'react-router-dom'
 import NewPost from './NewPost'
 import PostDetail from './PostDetail'
+import {connect} from 'react-redux'
+import {fetchAllPosts} from '../actions/posts_actions';
+import {fetchAllCategories} from '../actions/categories_actions';
+import {withRouter} from 'react-router-dom'
 
 class App extends Component {
 
-    // handleCategoryClick = (option) => {
-    //     const {dispatch} = this.props;
-    //     dispatch(changeCategoriesFilter(option));
-    //     option !== 'all' ? dispatch(getPostsForCategoryAPI(option)) : dispatch(getAllPosts());
-    // };
+    componentDidMount() {
+        const {dispatch, posts, categories, filters} = this.props;
+        dispatch(fetchAllPosts());
+        dispatch(fetchAllCategories());
+    }
 
 
     render() {
@@ -25,9 +29,9 @@ class App extends Component {
 
                 <Route exact path="/:category?" component={ListPosts}/>
 
-                <Route exact path="/:category?/newPost" component={NewPost}/>
+                <Route exact path="/:category/newPost" component={NewPost}/>
 
-                <Route exact path="/:category?/:id" component={PostDetail}/>
+                <Route exact path="/:category/:id" component={PostDetail}/>
 
 
             </Grid>
@@ -35,7 +39,12 @@ class App extends Component {
     }
 }
 
-//TODO: add the route here later
+function mapStateToProps(state) {
+    const {posts, categories, filters} = state;
+    return {
+        posts, categories, filters
+    }
+}
 
 
-export default (App);
+export default  withRouter(connect(mapStateToProps)(App));

@@ -3,10 +3,12 @@ import {Grid, Row, Col, Panel, Button, Glyphicon, Clearfix} from 'react-bootstra
 import FilterBar from './FilterBar'
 import {connect} from 'react-redux'
 import {votePostAPI} from '../actions/posts_actions'
-import {fetchAllPosts} from '../actions/posts_actions';
+
 import sortOn from 'sort-on'
 import {Link} from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap';
+import {getDetailPost, changeCategoriesFilter} from '../actions/filters_actions';
+
 
 class ListPosts extends Component {
 
@@ -16,27 +18,25 @@ class ListPosts extends Component {
         return (sortOn(posts, option));
     }
 
-    componentDidMount() {
-        const {dispatch, posts, categories, filters} = this.props;
-        dispatch(fetchAllPosts());
-    }
-
     handleOnClick = (id, option) => {
         const {dispatch} = this.props;
         dispatch(votePostAPI(id, option));
     };
 
+    handlePostDetail = (id) => {
+        const {dispatch} = this.props;
+        dispatch(getDetailPost(id))
+    };
 
     render() {
         const {posts, filters, match} = this.props;
         let category = (match.params.category);
 
-
         // dispatch(getPostsForCategoryAPI(category));
         let showingPosts = (posts) ? posts : [];
 
         if (showingPosts) {
-            showingPosts = (!category)
+            showingPosts = (!category || category.trim() === '')
                 ? showingPosts.filter((post) => !post.deleted)
                 : showingPosts.filter((post) => !post.deleted && post.category === category);
         }
@@ -68,7 +68,8 @@ class ListPosts extends Component {
                                     </div>
                                 </Col>
                                 <Col xs={10} md={11}>
-                                    <Link to={`/${post.category}/${post.id}`}>
+                                    <Link to={`/${post.category}/${post.id}`}
+                                          onClick={() => this.handlePostDetail(post.id)}>
                                         <h4>{post.title}</h4>
                                     </Link>
                                     <p>{post.body.slice(0, 200)}... </p>

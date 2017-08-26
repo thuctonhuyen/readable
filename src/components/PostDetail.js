@@ -3,18 +3,31 @@ import {
     Row
 } from 'react-bootstrap'
 
+import {connect} from 'react-redux'
+
 
 class PostDetail extends Component {
-
     render() {
+        const {posts, match} = this.props;
+        let post = (match.params.id) ?
+            posts.filter(post => post.id === match.params.id) : [];
         return (
             <Row>
-               <div>
-                    <title>POST DETAIL</title>
-               </div>
+                {post.map(post =>
+                    <div key={post.id}>
+                        <h2>{post['title']}</h2>
+                    </div>
+                )}
             </Row>
         );
     }
 }
 
-export default PostDetail;
+function mapStateToProps({posts}) {
+    return {
+        posts
+    }
+
+}
+
+export default connect(mapStateToProps)(PostDetail);

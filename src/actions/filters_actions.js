@@ -12,3 +12,8 @@ export const changeCategoriesFilter = option  => ({
     option
 });
 
+export const getDetailPost = id => ({
+    type: action_types.GET_DETAIL_POST,
+    id
+});
+

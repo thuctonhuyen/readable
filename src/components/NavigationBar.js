@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon} from 'react-bootstrap';
-import {fetchAllCategories} from '../actions/categories_actions';
+
 import {changeCategoriesFilter} from '../actions/filters_actions';
 
 import {Link} from 'react-router-dom'
@@ -11,7 +11,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 class NavigationBar extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
-        dispatch(fetchAllCategories());
+
     }
 
     handleClick = (option) => {
@@ -27,7 +27,8 @@ class NavigationBar extends Component {
             <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to="/">Readable <Glyphicon
+                        <Link to="/"
+                              onClick={() => this.handleClick('')}>Readable <Glyphicon
                             glyph="fire"></Glyphicon></Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />

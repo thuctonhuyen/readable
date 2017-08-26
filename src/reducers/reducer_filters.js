@@ -18,6 +18,12 @@ function filters(state = initialState, action) {
                 ...state,
                 categories: action.option
             };
+
+        case action_types.GET_DETAIL_POST:
+            return{
+                ...state,
+                postID: action.id
+            };
         default:
             return state;
     }
