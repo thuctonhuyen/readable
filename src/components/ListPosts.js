@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Panel, Button, Glyphicon, Clearfix} from 'react-bootstrap'
+import {Grid, Row, Col, Panel} from 'react-bootstrap'
 import FilterBar from './FilterBar'
 import {connect} from 'react-redux'
-import {votePostAPI} from '../actions/posts_actions'
 
 import sortOn from 'sort-on'
 import {Link} from 'react-router-dom'
-import {LinkContainer} from 'react-router-bootstrap';
-import {getDetailPost, changeCategoriesFilter} from '../actions/filters_actions';
-
+import {getDetailPost} from '../actions/filters_actions';
+import Vote from './Vote'
 
 class ListPosts extends Component {
 
@@ -18,10 +16,7 @@ class ListPosts extends Component {
         return (sortOn(posts, option));
     }
 
-    handleOnClick = (id, option) => {
-        const {dispatch} = this.props;
-        dispatch(votePostAPI(id, option));
-    };
+
 
     handlePostDetail = (id) => {
         const {dispatch} = this.props;
@@ -51,21 +46,10 @@ class ListPosts extends Component {
                     </Row>
                     <br/>
                     {showingPosts.map((post) =>
-
                         <Row className="show-grid" key={post.id}>
                             <Panel>
                                 <Col xs={2} md={1}>
-                                    <div style={{display: 'grid'}}>
-                                        <Button bsStyle="link"
-                                                onClick={() => this.handleOnClick(post.id, 'upVote')}>
-                                            <Glyphicon glyph="thumbs-up"/>
-                                        </Button>
-                                        <span>{post.voteScore}</span>
-                                        <Button bsStyle="link"
-                                                onClick={() => this.handleOnClick(post.id, 'downVote')}>
-                                            <Glyphicon glyph="thumbs-down"/>
-                                        </Button>
-                                    </div>
+                                    <Vote postID={post.id} voteScore={post.voteScore}/>
                                 </Col>
                                 <Col xs={10} md={11}>
                                     <Link to={`/${post.category}/${post.id}`}
