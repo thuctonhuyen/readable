@@ -10,7 +10,7 @@ class PostDetail extends Component {
         return (
             <Row>
                <div>
-
+                    <title>POST DETAIL</title>
                </div>
             </Row>
         );

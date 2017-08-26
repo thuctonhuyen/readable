@@ -5,6 +5,7 @@ import ListPosts from './ListPosts'
 import {Grid, Row} from 'react-bootstrap'
 import {Route} from 'react-router-dom'
 import NewPost from './NewPost'
+import PostDetail from './PostDetail'
 
 class App extends Component {
 
@@ -25,6 +26,9 @@ class App extends Component {
                 <Route exact path="/:category?" component={ListPosts}/>
 
                 <Route exact path="/:category?/newPost" component={NewPost}/>
+
+                <Route exact path="/:category?/:id" component={PostDetail}/>
+
 
             </Grid>
         );

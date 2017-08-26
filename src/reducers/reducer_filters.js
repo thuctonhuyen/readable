@@ -2,7 +2,8 @@ import * as action_types from '../action_types/action_types'
 const initialState =
     {
         sortBy: 'voteScore',
-        categories: 'all'
+        categories: 'all',
+        postID: null
     };
 
 function filters(state = initialState, action) {

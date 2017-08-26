@@ -36,7 +36,7 @@ class NavigationBar extends Component {
                     <Nav>
                         <NavDropdown title="Categories" id="basic-nav-dropdown">
                             {showingCategories.map((category) =>
-                                <LinkContainer
+                                <LinkContainer key={category.name}
                                     to={`/${category.name}`}
                                     onClick={() => this.handleClick(category.name)}>
                                     <MenuItem>{category.name} </MenuItem>

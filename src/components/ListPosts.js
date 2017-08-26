@@ -5,8 +5,8 @@ import {connect} from 'react-redux'
 import {votePostAPI} from '../actions/posts_actions'
 import {fetchAllPosts} from '../actions/posts_actions';
 import sortOn from 'sort-on'
-import {withRouter} from 'react-router-dom'
-import {getPostsForCategoryAPI, getAllPosts} from '../actions/posts_actions'
+import {Link} from 'react-router-dom'
+import {LinkContainer} from 'react-router-bootstrap';
 
 class ListPosts extends Component {
 
@@ -27,7 +27,6 @@ class ListPosts extends Component {
     };
 
 
-
     render() {
         const {posts, filters, match} = this.props;
         let category = (match.params.category);
@@ -38,10 +37,10 @@ class ListPosts extends Component {
 
         if (showingPosts) {
             showingPosts = (!category)
-            ? showingPosts.filter((post) => !post.deleted)
-            : showingPosts.filter((post) => !post.deleted && post.category === category);
+                ? showingPosts.filter((post) => !post.deleted)
+                : showingPosts.filter((post) => !post.deleted && post.category === category);
         }
-        
+
         showingPosts = this.sortPost(showingPosts, filters.sortBy);
 
         return (
@@ -52,6 +51,7 @@ class ListPosts extends Component {
                     </Row>
                     <br/>
                     {showingPosts.map((post) =>
+
                         <Row className="show-grid" key={post.id}>
                             <Panel>
                                 <Col xs={2} md={1}>
@@ -68,13 +68,16 @@ class ListPosts extends Component {
                                     </div>
                                 </Col>
                                 <Col xs={10} md={11}>
-                                    <h4>{post.title}</h4>
+                                    <Link to={`/${post.category}/${post.id}`}>
+                                        <h4>{post.title}</h4>
+                                    </Link>
                                     <p>{post.body.slice(0, 200)}... </p>
                                 </Col>
                             </Panel>
                         </Row>
                     )}
                 </Grid>
+
             </Row>
 
         );
