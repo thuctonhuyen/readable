@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import sortOn from 'sort-on'
 import {Link} from 'react-router-dom'
 import {getDetailPost} from '../actions/filters_actions';
+import {fetchCommentsForPost} from '../actions/comments_actions'
 import Vote from './Vote'
 
 class ListPosts extends Component {
@@ -16,11 +17,10 @@ class ListPosts extends Component {
         return (sortOn(posts, option));
     }
 
-
-
     handlePostDetail = (id) => {
         const {dispatch} = this.props;
-        dispatch(getDetailPost(id))
+        dispatch(getDetailPost(id));
+        dispatch(fetchCommentsForPost(id));
     };
 
     render() {

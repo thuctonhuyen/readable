@@ -4,11 +4,12 @@ import {
 } from 'react-bootstrap'
 import Vote from './Vote'
 import {connect} from 'react-redux'
+import ListComments from './ListComments'
 
 
 class PostDetail extends Component {
     render() {
-        const {posts, match} = this.props;
+        const {posts, comments, match} = this.props;
         let post = (match.params.id) ?
             posts.filter(post => post.id === match.params.id) : [];
         return (
@@ -30,21 +31,18 @@ class PostDetail extends Component {
                                 </Row>
                             </Col>
                         </Panel>
+                        <ListComments comments={comments}/>
                     </Row>
                 )}
-                <Row>
-                    <Panel>
-                        comment section
-                    </Panel>
-                </Row>
+
             </Row>
         );
     }
 }
 
-function mapStateToProps({posts}) {
+function mapStateToProps({posts, comments}) {
     return {
-        posts
+        posts, comments
     }
 
 }
