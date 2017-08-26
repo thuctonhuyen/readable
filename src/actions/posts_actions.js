@@ -39,3 +39,12 @@ export const votePostAPI = (id, option) => dispatch => (
 );
 /* end VOTE_POST */
 
+/* start GET_POSTS_FOR_CATEGORY */
+
+//fetch posts for given category:
+export const getPostsForCategoryAPI = (category) => dispatch => (
+    ReadAPIUtil.getPostsForCategory(category)
+        .then(posts => dispatch(getAllPosts(posts)))
+);
+/* end GET_POSTS_FOR_CATEGORY */
+

@@ -2,10 +2,17 @@ import React, {Component} from 'react';
 import '../App.css';
 import NavigationBar from './NavigationBar';
 import ListPosts from './ListPosts'
-import AddPostModal from './AddPostModal'
-import {Grid, Row, Col, PageHeader} from 'react-bootstrap'
+import {Grid, Row} from 'react-bootstrap'
+import {Route} from 'react-router-dom'
+import NewPost from './NewPost'
 
 class App extends Component {
+
+    // handleCategoryClick = (option) => {
+    //     const {dispatch} = this.props;
+    //     dispatch(changeCategoriesFilter(option));
+    //     option !== 'all' ? dispatch(getPostsForCategoryAPI(option)) : dispatch(getAllPosts());
+    // };
 
 
     render() {
@@ -14,17 +21,17 @@ class App extends Component {
                 <Row>
                     <NavigationBar/>
                 </Row>
-                <Row>
-                    <ListPosts/>
-                </Row>
-                {/*<Row>*/}
-                    {/*<AddPostModal/>*/}
-                {/*</Row>*/}
+
+                <Route exact path="/:category?" component={ListPosts}/>
+
+                <Route exact path="/:category?/newPost" component={NewPost}/>
+
             </Grid>
         );
     }
 }
 
+//TODO: add the route here later
 
 
 export default (App);

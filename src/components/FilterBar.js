@@ -17,11 +17,11 @@ class FilterBar extends Component {
                          title="Sort by" id="sort-by-dropdown"
                          onSelect={(eventKey, event) => this.handleSelection(eventKey, event)}>
                 <MenuItem eventKey={'voteScore'}
-                          active={filters.sortBy === 'voteScore'}>Popular Vote</MenuItem>
+                          active={filters.sortBy === 'voteScore'}>By Vote</MenuItem>
                 <MenuItem eventKey={'timestamp'}
-                          active={filters.sortBy === 'timestamp'}>Most Recent</MenuItem>
+                          active={filters.sortBy === 'timestamp'}>By Date</MenuItem>
                 <MenuItem eventKey={'title'}
-                          active={filters.sortBy === 'title'}>Title</MenuItem>
+                          active={filters.sortBy === 'title'}>By Title</MenuItem>
             </SplitButton>
         );
     }
