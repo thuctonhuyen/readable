@@ -5,6 +5,7 @@ import {
 import Vote from './Vote'
 import {connect} from 'react-redux'
 import {convertTimestampToString} from '../utils/helpers'
+import {LinkContainer} from 'react-router-bootstrap';
 
 class ListComments extends Component {
 
@@ -34,6 +35,13 @@ class ListComments extends Component {
                         </Col>
                     </Panel>
                 )}
+                <div style={{textAlign: 'center'}}>
+                    <LinkContainer to={`/add/newComment`}>
+                        <Button>
+                            Add New Comment
+                        </Button>
+                    </LinkContainer>
+                </div>
             </Panel>
 
 

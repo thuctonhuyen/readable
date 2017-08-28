@@ -61,7 +61,6 @@ class ListPosts extends Component {
                         </Row>
                     )}
                 </Grid>
-
             </Row>
 
         );

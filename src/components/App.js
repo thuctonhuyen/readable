@@ -27,10 +27,10 @@ class App extends Component {
                     <NavigationBar/>
                 </Row>
 
-                <Route exact path="/:category?" component={ListPosts}/>
-
-                <Route exact path="/:category/newPost" component={NewPost}/>
-
+                {["/:category", "/"].map
+                (path => <Route exact path={path} component={ListPosts}/>)}
+                <Route exact path="/add/newPost" component={NewPost}/>
+                <Route exact path="/add/newComment" component={NewPost}/>
                 <Route exact path="/:category/:id" component={PostDetail}/>
 
 

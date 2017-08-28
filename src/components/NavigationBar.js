@@ -46,8 +46,9 @@ class NavigationBar extends Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                        <LinkContainer to={`/${filters.categories}/newPost`}><NavItem eventKey={1} href="#">Add new
-                            Post</NavItem></LinkContainer>
+                        <LinkContainer to={`/add/newPost`}>
+                            <NavItem eventKey={1} href="#">Add new Post</NavItem>
+                        </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
