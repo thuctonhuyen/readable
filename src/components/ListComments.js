@@ -16,7 +16,7 @@ class ListComments extends Component {
                 {comments.map(comment =>
                     <Panel>
                         <Col xs={2} md={1}>
-                            <Vote postID={comment.id} voteScore={comment.voteScore}/>
+                            <Vote commentID={comment.id} voteScore={comment.voteScore}/>
                         </Col>
                         <Col xs={10} md={11}>
                             <Row> <Col xs={5} xsPush={0}>

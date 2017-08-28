@@ -13,3 +13,15 @@ export const fetchCommentsForPost = (id) => dispatch => (
 );
 
 /* end GET_COMMENTS_FOR_POST */
+
+/* start VOTE_COMMENT*/
+export const voteComment = (newComment) => ({
+    type: action_types.VOTE_COMMENT,
+    newComment
+});
+
+export const voteCommentAPI = (id, option) => dispatch => (
+    ReadAPIUtil.voteComment(id, option)
+        .then(newComment => dispatch(voteComment(newComment)))
+);
+/*end VOTE_COMMENT*/
