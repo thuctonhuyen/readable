@@ -17,3 +17,7 @@ export const getDetailPost = id => ({
     id
 });
 
+export const selectPostCategory = category => ({
+    type: action_types.SELECT_POST_CATEGORY,
+    category
+});

@@ -10,14 +10,30 @@ class NewPost extends Component {
 
     render() {
         return (
-            <Row>
-                <form>
+            <form>
 
-                    <Button type="submit">
+                <FormGroup>
+                    <ControlLabel>Title:</ControlLabel>
+                    <FormControl></FormControl>
+                </FormGroup>
+
+                <FormGroup>
+                    <ControlLabel>Body of Content:</ControlLabel>
+                    <FormControl></FormControl>
+                </FormGroup>
+
+                <FormGroup>
+                    <ControlLabel>Name of Author:</ControlLabel>
+                    <FormControl></FormControl>
+                </FormGroup>
+
+                <div style={{textAlign: 'center'}}>
+                    <Button bsStyle="primary" type="submit">
                         Submit
                     </Button>
-                </form>
-            </Row>
+                </div>
+
+            </form>
         );
     }
 }

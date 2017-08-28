@@ -3,13 +3,14 @@ const initialState =
     {
         sortBy: 'voteScore',
         categories: 'all',
-        postID: null
+        postID: null,
+        postCategory: null
     };
 
 function filters(state = initialState, action) {
     switch (action.type) {
         case action_types.CHANGE_SORT_BY_FILTER:
-            return{
+            return {
                 ...state,
                 sortBy: action.option
             };
@@ -20,9 +21,14 @@ function filters(state = initialState, action) {
             };
 
         case action_types.GET_DETAIL_POST:
-            return{
+            return {
                 ...state,
                 postID: action.id
+            };
+        case action_types.SELECT_POST_CATEGORY:
+            return {
+                ...state,
+                postCategory: action.category
             };
         default:
             return state;

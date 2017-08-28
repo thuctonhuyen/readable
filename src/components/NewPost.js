@@ -1,24 +1,56 @@
 import React, {Component} from 'react';
 import {
-    Row,
-    Button, FormGroup,
-    ControlLabel, FormControl
+    Row, ButtonGroup, DropdownButton,
+    Button, MenuItem, Grid,
 } from 'react-bootstrap'
-
+import {connect} from 'react-redux'
+import {selectPostCategory} from '../actions/filters_actions'
+import CreateEditForm from './CreateEditForm'
 
 class NewPost extends Component {
 
+    handleOnSelection = (category) => {
+        const {dispatch} = this.props;
+        dispatch(selectPostCategory(category));
+
+    };
+
     render() {
+        const {categories, filters} = this.props;
         return (
             <Row>
-                <form>
-                    <Button type="submit">
-                        Submit
-                    </Button>
-                </form>
+                <Grid>
+                    <Row>
+                        <ButtonGroup>
+                            <DropdownButton
+                                title={'Select Category'}
+                                id="category-selector"
+                                onSelect={(eventKey) => this.handleOnSelection(eventKey)}>
+                                {categories.map(category =>
+                                    <MenuItem eventKey={category.name}
+                                              active={filters.postCategory === category.name}>
+                                        {category.name}
+                                    </MenuItem>
+                                )}
+                            </DropdownButton>
+                        </ButtonGroup>
+                    </Row>
+                    <Row style={{'display': filters.postCategory !== null ? 'grid' : 'none'}}>
+                        <form style={{'padding-top': '10px'}}>
+                            <CreateEditForm/>
+                        </form>
+                    </Row>
+                </Grid>
             </Row>
         );
     }
 }
 
-export default NewPost;
+function mapStateToProps(state) {
+    const {categories, filters} = state;
+    return {
+        categories, filters
+    }
+}
+
+export default connect(mapStateToProps)(NewPost);
