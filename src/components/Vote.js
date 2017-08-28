@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import '../App.css';
 import {votePostAPI} from '../actions/posts_actions'
 import {connect} from 'react-redux'
 import {Button, Glyphicon} from 'react-bootstrap'
+import '../css/Vote.css';
+
 
 
 class Vote extends Component {
@@ -15,7 +16,7 @@ class Vote extends Component {
     render() {
         const {postID, voteScore} = this.props;
         return (
-            <div style={{display: 'grid'}}>
+            <div className="voteWrapper">
                 <Button bsStyle="link"
                         onClick={() => this.handleOnClick(postID, 'upVote')}>
                     <Glyphicon glyph="thumbs-up"/>

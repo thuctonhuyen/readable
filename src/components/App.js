@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.css';
+import '../css/App.css';
 import NavigationBar from './NavigationBar';
 import ListPosts from './ListPosts'
 import {Grid, Row} from 'react-bootstrap'

@@ -17,7 +17,7 @@ class NavigationBar extends Component {
     handleClick = (option) => {
         const {dispatch} = this.props;
         dispatch(changeCategoriesFilter(option));
-    }
+    };
 
 
     render() {

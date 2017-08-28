@@ -5,9 +5,15 @@ import {
 import Vote from './Vote'
 import {connect} from 'react-redux'
 import ListComments from './ListComments'
-
+import {fetchCommentsForPost} from '../actions/comments_actions'
 
 class PostDetail extends Component {
+
+    componentDidMount(){
+        const {dispatch, match} = this.props;
+        dispatch(fetchCommentsForPost(match.params.id));
+    }
+    //TODO: make it become columne
     render() {
         const {posts, comments, match} = this.props;
         let post = (match.params.id) ?
@@ -16,13 +22,14 @@ class PostDetail extends Component {
             <Row className="show-grid">
                 {post.map(post =>
                     <Row>
-                        <h4>{post.title}</h4>
+                        <h4 style={{'text-align':'center'}}>{post.title}</h4>
                         <Panel>
                             <Col xs={2} md={1}>
                                 <Vote postID={post.id} voteScore={post.voteScore}/>
                             </Col>
                             <Col xs={10} md={11}>
                                 <Row>
+
                                     <div style={{'float': 'left', 'text-align': 'left'}}>{post.body}
                                     </div>
                                 </Row>
