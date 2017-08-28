@@ -37,7 +37,7 @@ class ListComments extends Component {
                 )}
                 <div style={{textAlign: 'center'}}>
                     <LinkContainer to={`/add/newComment`}>
-                        <Button>
+                        <Button bsStyle="primary">
                             Add New Comment
                         </Button>
                     </LinkContainer>

@@ -5,6 +5,7 @@ import ListPosts from './ListPosts'
 import {Grid, Row} from 'react-bootstrap'
 import {Route} from 'react-router-dom'
 import NewPost from './NewPost'
+import NewComment from './NewComment'
 import PostDetail from './PostDetail'
 import {connect} from 'react-redux'
 import {fetchAllPosts} from '../actions/posts_actions';
@@ -30,7 +31,7 @@ class App extends Component {
                 {["/:category", "/"].map
                 (path => <Route exact path={path} component={ListPosts}/>)}
                 <Route exact path="/add/newPost" component={NewPost}/>
-                <Route exact path="/add/newComment" component={NewPost}/>
+                <Route exact path="/add/newComment" component={NewComment}/>
                 <Route exact path="/:category/:id" component={PostDetail}/>
 
 
