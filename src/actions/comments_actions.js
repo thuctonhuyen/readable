@@ -25,3 +25,16 @@ export const voteCommentAPI = (id, option) => dispatch => (
         .then(newComment => dispatch(voteComment(newComment)))
 );
 /*end VOTE_COMMENT*/
+
+
+/* start ADD_COMMENT */
+export const addComment = newComment => ({
+    type: action_types.ADD_COMMENT,
+    newComment
+});
+
+export const addCommentAPI = (body) => dispatch => (
+    ReadAPIUtil
+        .addComment(body).then(newPost => dispatch(addComment(newPost)))
+);
+/* end ADD_COMMENT */

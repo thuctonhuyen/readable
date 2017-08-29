@@ -21,7 +21,7 @@ function filters(state = initialState, action) {
                 categories: action.option
             };
 
-        case action_types.GET_DETAIL_POST:
+        case action_types.GET_DETAIL_POST: case action_types.SET_POST_ID:
             return {
                 ...state,
                 postID: action.id

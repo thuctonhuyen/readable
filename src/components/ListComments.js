@@ -6,12 +6,13 @@ import Vote from './Vote'
 import {connect} from 'react-redux'
 import {convertTimestampToString} from '../utils/helpers'
 import {LinkContainer} from 'react-router-bootstrap';
-
+import {setFormType} from '../actions/filters_actions';
 
 //TODO: filters for comment section (sort by date, by vote)
 class ListComments extends Component {
+
     render() {
-        const {comments} = this.props;
+        const {comments, postID} = this.props;
         return (
             <Panel header="Comments Section:">
                 {comments.map(comment =>
@@ -36,7 +37,7 @@ class ListComments extends Component {
                     </Panel>
                 )}
                 <div style={{textAlign: 'center'}}>
-                    <LinkContainer to={`/add/newComment`}>
+                    <LinkContainer to={`/add/newComment/${postID}`}>
                         <Button bsStyle="primary">
                             Add New Comment
                         </Button>

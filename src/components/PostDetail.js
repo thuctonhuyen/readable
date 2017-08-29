@@ -13,7 +13,7 @@ class PostDetail extends Component {
         const {dispatch, match} = this.props;
         dispatch(fetchCommentsForPost(match.params.id));
     }
-    //TODO: make it become columne
+
     render() {
         const {posts, comments, match} = this.props;
         let post = (match.params.id) ?
@@ -38,7 +38,7 @@ class PostDetail extends Component {
                                 </Row>
                             </Col>
                         </Panel>
-                        <ListComments comments={comments}/>
+                        <ListComments comments={comments} postID={post.id}/>
                     </Row>
                 )}
 

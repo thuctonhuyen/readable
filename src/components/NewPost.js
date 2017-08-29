@@ -12,8 +12,13 @@ class NewPost extends Component {
     handleOnSelection = (category) => {
         const {dispatch} = this.props;
         dispatch(selectPostCategory(category));
-        dispatch(setFormType('addPost'));
+
     };
+
+    componentDidMount(){
+        const {dispatch} = this.props;
+        dispatch(setFormType('addPost'));
+    }
 
     render() {
         const {categories, filters} = this.props;

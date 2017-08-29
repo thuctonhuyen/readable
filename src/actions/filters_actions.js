@@ -26,3 +26,10 @@ export const setFormType = type => ({
     type: action_types.SET_FORM_TYPE,
     formType: type
 });
+
+export const setPostId = id => ({
+    type: action_types.SET_POST_ID,
+    id
+});
+
+

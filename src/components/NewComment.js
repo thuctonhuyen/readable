@@ -4,16 +4,16 @@ import {
     Button, MenuItem, Grid,
 } from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {selectPostCategory} from '../actions/filters_actions'
 import CreateEditForm from './CreateEditForm'
+import {setFormType, setPostId} from '../actions/filters_actions'
 
 class NewComment extends Component {
+    componentDidMount(){
+        const {dispatch, match} = this.props;
+        dispatch(setFormType('addComment'));
+        dispatch(setPostId(match.params.id));
+    }
 
-    handleOnSelection = (category) => {
-        const {dispatch} = this.props;
-        dispatch(selectPostCategory(category));
-
-    };
 
     render() {
         const {categories, filters} = this.props;
