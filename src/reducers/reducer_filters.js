@@ -4,7 +4,8 @@ const initialState =
         sortBy: 'voteScore',
         categories: 'all',
         postID: null,
-        postCategory: null
+        postCategory: null,
+        formType: null,
     };
 
 function filters(state = initialState, action) {
@@ -29,6 +30,11 @@ function filters(state = initialState, action) {
             return {
                 ...state,
                 postCategory: action.category
+            };
+        case action_types.SET_FORM_TYPE:
+            return {
+                ...state,
+                formType: action.formType
             };
         default:
             return state;

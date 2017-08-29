@@ -4,7 +4,7 @@ import {
     Button, MenuItem, Grid,
 } from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {selectPostCategory} from '../actions/filters_actions'
+import {selectPostCategory, setFormType} from '../actions/filters_actions'
 import CreateEditForm from './CreateEditForm'
 
 class NewPost extends Component {
@@ -12,7 +12,7 @@ class NewPost extends Component {
     handleOnSelection = (category) => {
         const {dispatch} = this.props;
         dispatch(selectPostCategory(category));
-
+        dispatch(setFormType('addPost'));
     };
 
     render() {

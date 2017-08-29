@@ -21,3 +21,8 @@ export const selectPostCategory = category => ({
     type: action_types.SELECT_POST_CATEGORY,
     category
 });
+
+export const setFormType = type => ({
+    type: action_types.SET_FORM_TYPE,
+    formType: type
+});

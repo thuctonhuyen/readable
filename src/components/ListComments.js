@@ -7,9 +7,9 @@ import {connect} from 'react-redux'
 import {convertTimestampToString} from '../utils/helpers'
 import {LinkContainer} from 'react-router-bootstrap';
 
+
+//TODO: filters for comment section (sort by date, by vote)
 class ListComments extends Component {
-
-
     render() {
         const {comments} = this.props;
         return (
