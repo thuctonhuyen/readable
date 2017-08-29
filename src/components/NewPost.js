@@ -21,7 +21,8 @@ class NewPost extends Component {
     }
 
     render() {
-        const {categories, filters} = this.props;
+        const {categories, filters, history} = this.props;
+
         return (
             <Row>
                 <Grid>
@@ -42,7 +43,7 @@ class NewPost extends Component {
                     </Row>
                     <Row style={{'display': filters.postCategory !== null ? 'grid' : 'none'}}>
                         <form style={{'padding-top': '10px'}}>
-                            <CreateEditForm/>
+                            <CreateEditForm history={history}/>
                         </form>
                     </Row>
                 </Grid>

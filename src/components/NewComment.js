@@ -16,14 +16,13 @@ class NewComment extends Component {
 
 
     render() {
-        const {categories, filters} = this.props;
+        const {categories, filters, history} = this.props;
         return (
             <Row>
                 <Grid>
-
                     <Row>
                         <form style={{'padding-top': '10px'}}>
-                            <CreateEditForm/>
+                            <CreateEditForm history={history}/>
                         </form>
                     </Row>
                 </Grid>

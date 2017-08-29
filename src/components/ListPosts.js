@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom'
 import {getDetailPost} from '../actions/filters_actions';
 import Vote from './Vote'
 
+//TODO: sort date descendingly
 class ListPosts extends Component {
 
     sortPost(posts, option) {

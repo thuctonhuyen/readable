@@ -15,7 +15,7 @@ import {withRouter} from 'react-router-dom'
 class App extends Component {
 
     componentDidMount() {
-        const {dispatch, posts, categories, filters} = this.props;
+        const {dispatch} = this.props;
         dispatch(fetchAllPosts());
         dispatch(fetchAllCategories());
     }
@@ -29,7 +29,7 @@ class App extends Component {
                 </Row>
 
                 {["/:category", "/"].map
-                (path => <Route exact path={path} component={ListPosts}/>)}
+                ((path, index) => <Route key={index} exact path={path} component={ListPosts}/>)}
                 <Route exact path="/add/newPost" component={NewPost}/>
                 <Route exact path="/add/newComment/:id" component={NewComment}/>
                 <Route exact path="/:category/:id" component={PostDetail}/>
@@ -40,12 +40,5 @@ class App extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    const {posts, categories, filters} = state;
-    return {
-        posts, categories, filters
-    }
-}
 
-
-export default  withRouter(connect(mapStateToProps)(App));
+export default  withRouter(connect()(App));
