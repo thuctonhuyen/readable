@@ -20,3 +20,4 @@ export const GET_DETAIL_POST = 'GET_DETAIL_POST';
 export const SELECT_POST_CATEGORY = 'SELECT_POST_CATEGORY';
 export const SET_FORM_TYPE = 'SET_FORM_STYLE';
 export const SET_POST_ID = 'SET_POST_ID';
+export const SET_COMMENT_ID = 'SET_COMMENT_ID';

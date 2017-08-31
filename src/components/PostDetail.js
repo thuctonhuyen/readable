@@ -17,7 +17,7 @@ class PostDetail extends Component {
     render() {
         const {posts, comments, match} = this.props;
         let post = (match.params.id) ?
-            posts.filter(post => post.id === match.params.id) : [];
+            posts.filter(post => post.id === match.params.id && !post.deleted) : [];
         return (
             <Row className="show-grid">
                 {post.map(post =>

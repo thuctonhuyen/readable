@@ -47,5 +47,27 @@ export const getPostsForCategoryAPI = (category) => dispatch => (
 );
 /* end GET_POSTS_FOR_CATEGORY */
 
+/*start DELETE_POST */
+export const deletePost = (id) => ({
+    type: action_types.DELETE_POST,
+    id
+});
+export const deletePostAPI = (id) => dispatch => (
+  ReadAPIUtil.deletePost(id)
+      .then(id => dispatch(deletePost(id)))
+);
+/*end DELETE_POST */
+
+/* start EDIT_POST */
+export const editPost = (newPost) => ({
+   type: action_types.EDIT_POST,
+    newPost
+});
+export const editPostAPI = (id, body) => dispatch => (
+  ReadAPIUtil.editPost(id, body)
+      .then(newPost => dispatch(editPost(newPost)))
+);
+/* end EDIT_POST */
+
 
 

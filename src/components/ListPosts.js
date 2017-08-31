@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Panel} from 'react-bootstrap'
+import {Grid, Row, Col, Panel, Button} from 'react-bootstrap'
 import FilterBar from './FilterBar'
 import {connect} from 'react-redux'
 
@@ -7,6 +7,8 @@ import sortOn from 'sort-on'
 import {Link} from 'react-router-dom'
 import {getDetailPost} from '../actions/filters_actions';
 import Vote from './Vote'
+import EditDeleteLinks from './EditDeleteLinks';
+import {getBriefBody} from '../utils/helpers'
 
 //TODO: sort date descendingly
 class ListPosts extends Component {
@@ -48,16 +50,21 @@ class ListPosts extends Component {
                     {showingPosts.map((post) =>
                         <Row className="show-grid" key={post.id}>
                             <Panel>
-                                <Col xs={2} md={1}>
-                                    <Vote postID={post.id} voteScore={post.voteScore}/>
-                                </Col>
-                                <Col xs={10} md={11}>
-                                    <Link to={`/${post.category}/${post.id}`}
-                                          onClick={() => this.handlePostDetail(post.id)}>
-                                        <h4>{post.title}</h4>
-                                    </Link>
-                                    <p>{post.body.slice(0, 200)}... </p>
-                                </Col>
+                                <Row>
+                                    <Col xs={2} md={1}>
+                                        <Vote postID={post.id} voteScore={post.voteScore}/>
+                                    </Col>
+                                    <Col xs={10} md={11}>
+                                        <Link to={`/${post.category}/${post.id}`}
+                                              onClick={() => this.handlePostDetail(post.id)}>
+                                            <h4>{post.title}</h4>
+                                        </Link>
+                                        <p>{getBriefBody(post.body)} </p>
+                                    </Col>
+                                </Row>
+
+                                <EditDeleteLinks formType="post" postID={post.id}/>
+
                             </Panel>
                         </Row>
                     )}

@@ -56,10 +56,6 @@ class ListComments extends Component {
                     </Panel>
                 </Collapse>
             </Panel>
-
-
-
-
         );
     }
 }

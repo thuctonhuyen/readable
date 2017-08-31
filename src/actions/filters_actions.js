@@ -32,4 +32,8 @@ export const setPostId = id => ({
     id
 });
 
+export const setCommentId = id => ({
+    type: action_types.SET_COMMENT_ID,
+    id
+});
 

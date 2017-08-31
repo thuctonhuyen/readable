@@ -35,6 +35,28 @@ export const addComment = newComment => ({
 
 export const addCommentAPI = (body) => dispatch => (
     ReadAPIUtil
-        .addComment(body).then(newPost => dispatch(addComment(newPost)))
+        .addComment(body).then(newComment => dispatch(addComment(newComment)))
 );
 /* end ADD_COMMENT */
+
+/*start DELETE_COMMENT */
+export const deleteComment = (id) => ({
+    type: action_types.DELETE_POST,
+    id
+});
+export const deleteCommentAPI = (id) => dispatch => (
+    ReadAPIUtil.deleteComment(id)
+        .then(id => dispatch(deleteComment(id)))
+);
+/*end DELETE_COMMENT */
+
+/* start EDIT_POST */
+export const editComment = (newComment) => ({
+    type: action_types.EDIT_POST,
+    newComment
+});
+export const editCommentAPI = (id, body) => dispatch => (
+    ReadAPIUtil.editComment(id, body)
+        .then(newComment => dispatch(editComment(newComment)))
+);
+/* end EDIT_POST */

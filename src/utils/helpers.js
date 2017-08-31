@@ -12,3 +12,11 @@ export function convertTimestampToString(timestamp) {
     return (dformat);
 }
 
+export function getBriefBody(body){
+    if(body) {
+        return body.length > 200 ? `${body.slice(0, 200)}...` : body;
+    }
+    else{
+        return 'No Content';
+    }
+}

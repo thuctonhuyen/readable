@@ -4,6 +4,7 @@ const initialState =
         sortBy: 'voteScore',
         categories: 'all',
         postID: null,
+        commentID: null,
         postCategory: null,
         formType: null,
     };
@@ -35,6 +36,11 @@ function filters(state = initialState, action) {
             return {
                 ...state,
                 formType: action.formType
+            };
+        case action_types.SET_COMMENT_ID:
+            return{
+                ...state,
+                commentID: action.id
             };
         default:
             return state;
