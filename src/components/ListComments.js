@@ -22,9 +22,10 @@ class ListComments extends Component {
 
     render() {
         const {comments, postID, filters} = this.props;
+        let showingComments = comments.filter((comment) => !comment.deleted);
         return (
             <Panel header="Comments Section:">
-                {comments.map(comment =>
+                {showingComments.map(comment =>
                     <Panel>
                         <Row>
                             <Col xs={2} md={1}>

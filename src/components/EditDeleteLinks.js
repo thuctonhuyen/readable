@@ -37,7 +37,10 @@ class EditDeleteLinks extends Component {
 
     handleCollapse(postID, commentID) {
         const {filters} = this.props;
-        return (filters.postID === postID || filters.commentID === commentID);
+
+        return ((postID && filters.formType && filters.formType.includes('Post') && postID === filters.postID)
+        || commentID && filters.formType && filters.formType.includes('Comment') && commentID === filters.commentID);
+
     }
 
 

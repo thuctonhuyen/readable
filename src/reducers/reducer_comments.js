@@ -13,7 +13,7 @@ function comments(state = [], action) {
 
         case action_types.DELETE_COMMENT:
             let delete_comment = state.filter((comment) => comment.id === action.id);
-            delete_comment.deleted = false;
+            delete_comment.deleted = true;
             return state.filter((comment) => comment.id !==  action.id).concat([delete_comment]);
         default:
             return state;

@@ -10,8 +10,9 @@ import {addPostAPI, editPostAPI} from '../actions/posts_actions';
 import {addCommentAPI, editCommentAPI} from '../actions/comments_actions';
 import {LinkContainer} from 'react-router-bootstrap'
 import {setFormType, setPostId, setCommentId} from '../actions/filters_actions';
-
 const uuidv4 = require('uuid/v4');
+
+//TODO: check validation for required fields when adding post/comment
 class NewPost extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +28,6 @@ class NewPost extends Component {
         }
         else if (formType === 'editPost') {
             this.handleEditPost(body, postID);
-            e.target.reset();
         }
 
         else if (formType === 'addComment') {
@@ -36,8 +36,9 @@ class NewPost extends Component {
 
         else if (formType === 'editComment') {
             this.handleEditComment(body, commentID);
-            e.target.reset();
         }
+
+        e.target.reset();
     };
 
     handleAddNewPost = (body, category) => {

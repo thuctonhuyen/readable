@@ -41,7 +41,7 @@ export const addCommentAPI = (body) => dispatch => (
 
 /*start DELETE_COMMENT */
 export const deleteComment = (id) => ({
-    type: action_types.DELETE_POST,
+    type: action_types.DELETE_COMMENT,
     id
 });
 export const deleteCommentAPI = (id) => dispatch => (
@@ -50,13 +50,13 @@ export const deleteCommentAPI = (id) => dispatch => (
 );
 /*end DELETE_COMMENT */
 
-/* start EDIT_POST */
+/* start EDIT_COMMENT */
 export const editComment = (newComment) => ({
-    type: action_types.EDIT_POST,
+    type: action_types.EDIT_COMMENT,
     newComment
 });
 export const editCommentAPI = (id, body) => dispatch => (
     ReadAPIUtil.editComment(id, body)
         .then(newComment => dispatch(editComment(newComment)))
 );
-/* end EDIT_POST */
+/* end EDIT_COMMENT */
