@@ -28,13 +28,15 @@ class EditDeleteLinks extends Component {
 
 
     render(){
+        const {filters} = this.props;
         return (
             <Row>
                 <div style={{float: 'right'}}>
                     <Button bsStyle="link" onClick={() => this.handleEdit()}>Edit</Button>
                     <Button bsStyle="link" onClick={() => this.handleDelete()}>Delete</Button>
                 </div>
-                <Collapse in={this.props.formType == 'edit'}>
+                <Collapse in={filters.formType === 'editPost'
+                || filters.formType === 'editComment'}>
                     <Panel>
                         <CreateEditForm/>
                     </Panel>
@@ -44,4 +46,10 @@ class EditDeleteLinks extends Component {
     }
 }
 
-export default connect()(EditDeleteLinks);
+function mapStateToProps({filters}){
+    return {
+        filters
+    }
+}
+
+export default connect(mapStateToProps)(EditDeleteLinks);

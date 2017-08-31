@@ -65,7 +65,7 @@ export const editPost = (id, body) =>
 
 export const deletePost = (id) =>
     fetch(`${api}/posts/${id}`, {method: 'DELETE', headers})
-        .then(() => {});
+        .then(() => id);
 
 export const getCommentsForPost = (id) =>
     fetch(`${api}/posts/${id}/comments`, {headers})
@@ -114,6 +114,6 @@ export const editComment = (comment, body) =>
 export const deleteComment = (id) =>
     fetch(`${api}/comments/${id}`, {method: 'DELETE', headers})
         .then(res => res.json())
-        .then(data => data);
+        .then(() => id);
 
 

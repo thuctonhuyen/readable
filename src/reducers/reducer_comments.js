@@ -4,7 +4,7 @@ function comments(state = [], action) {
     switch (action.type) {
         case action_types.GET_COMMENTS_FOR_POST:
             return action.comments;
-        case action_types.VOTE_COMMENT, action_types.EDIT_COMMENT:
+        case action_types.VOTE_COMMENT: case action_types.EDIT_COMMENT:
             const {newComment} = action;
             return state.filter((comment) => comment.id !== newComment.id)
                 .concat([newComment]);
