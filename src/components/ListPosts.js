@@ -63,7 +63,7 @@ class ListPosts extends Component {
                                     </Col>
                                 </Row>
 
-                                <EditDeleteLinks formType="post" postID={post.id}/>
+                                <EditDeleteLinks postID={post.id}/>
 
                             </Panel>
                         </Row>

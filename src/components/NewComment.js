@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import {
-    Row, ButtonGroup, DropdownButton,
-    Button, MenuItem, Grid,
+    Row,  Grid, Well
 } from 'react-bootstrap'
 import {connect} from 'react-redux'
 import CreateEditForm from './CreateEditForm'
 import {setFormType, setPostId} from '../actions/filters_actions'
 
 class NewComment extends Component {
-    componentDidMount(){
+    componentDidMount() {
         const {dispatch, match} = this.props;
         dispatch(setFormType('addComment'));
         dispatch(setPostId(match.params.id));
@@ -21,7 +20,9 @@ class NewComment extends Component {
                 <Grid>
                     <Row>
                         <form style={{'padding-top': '10px'}}>
-                            <CreateEditForm history={history}/>
+                            <Well>
+                                <CreateEditForm history={history}/>
+                            </Well>
                         </form>
                     </Row>
                 </Grid>

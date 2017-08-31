@@ -6,10 +6,10 @@ import {
 } from 'react-bootstrap'
 import {connect} from 'react-redux';
 import serializeForm from 'form-serialize';
-import {addPostAPI} from '../actions/posts_actions';
-import {addCommentAPI} from '../actions/comments_actions';
+import {addPostAPI, editPostAPI} from '../actions/posts_actions';
+import {addCommentAPI, editCommentAPI} from '../actions/comments_actions';
 import {LinkContainer} from 'react-router-bootstrap'
-import {setFormType} from '../actions/filters_actions';
+import {setFormType, setPostId, setCommentId} from '../actions/filters_actions';
 
 const uuidv4 = require('uuid/v4');
 class NewPost extends Component {
@@ -18,7 +18,7 @@ class NewPost extends Component {
         const body = serializeForm(e.target, {hash: true});
 
         const {filters, history} = this.props;
-        const {formType, postID, postCategory} = filters;
+        const {formType, postID, commentID, postCategory} = filters;
 
 
         if (formType === 'addPost') {
@@ -26,21 +26,18 @@ class NewPost extends Component {
             history.push('/');
         }
         else if (formType === 'editPost') {
-
-
+            this.handleEditPost(body, postID);
+            e.target.reset();
         }
 
         else if (formType === 'addComment') {
             this.handleAddNewComment(body, postID);
-            //history.goBack();
         }
 
         else if (formType === 'editComment') {
-
+            this.handleEditComment(body, commentID);
+            e.target.reset();
         }
-
-
-
     };
 
     handleAddNewPost = (body, category) => {
@@ -51,6 +48,17 @@ class NewPost extends Component {
         dispatch(addPostAPI(body));
     };
 
+    handleEditPost = (body, postID) => {
+        const {dispatch} = this.props;
+
+
+        if(this.validationEditBody(body))
+            dispatch(editPostAPI(postID, body));
+
+        dispatch(setFormType(null));
+        dispatch(setPostId(null));
+    };
+
     handleAddNewComment = (body, postID) => {
         const {dispatch} = this.props;
         body['id'] = (uuidv4());
@@ -59,6 +67,23 @@ class NewPost extends Component {
         dispatch(addCommentAPI(body));
         dispatch(setFormType(null));
     };
+
+    handleEditComment = (body, commentID) => {
+        const {dispatch} = this.props;
+        if(this.validationEditBody(body))
+            dispatch(editCommentAPI(commentID, body));
+        dispatch(setFormType(null));
+        dispatch(setCommentId(null));
+    };
+
+    validationEditBody(body){
+        for(let key of Object.keys(body)){
+            if(!body[key])
+                delete body[key];
+        }
+
+        return (body);
+    }
 
 
     render() {

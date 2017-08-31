@@ -6,10 +6,11 @@ import Vote from './Vote'
 import {connect} from 'react-redux'
 import ListComments from './ListComments'
 import {fetchCommentsForPost} from '../actions/comments_actions'
+import EditDeleteLinks from './EditDeleteLinks';
 
 class PostDetail extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         const {dispatch, match} = this.props;
         dispatch(fetchCommentsForPost(match.params.id));
     }
@@ -22,21 +23,24 @@ class PostDetail extends Component {
             <Row className="show-grid">
                 {post.map(post =>
                     <Row>
-                        <h4 style={{'text-align':'center'}}>{post.title}</h4>
+                        <h4 style={{'text-align': 'center'}}>{post.title}</h4>
                         <Panel>
-                            <Col xs={2} md={1}>
-                                <Vote postID={post.id} voteScore={post.voteScore}/>
-                            </Col>
-                            <Col xs={10} md={11}>
-                                <Row>
+                            <Row>
+                                <Col xs={2} md={1}>
+                                    <Vote postID={post.id} voteScore={post.voteScore}/>
+                                </Col>
+                                <Col xs={10} md={11}>
+                                    <Row>
 
-                                    <div style={{'float': 'left', 'text-align': 'left'}}>{post.body}
-                                    </div>
-                                </Row>
-                                <Row>
-                                    <div style={{'float': 'right'}}>by {post.author}</div>
-                                </Row>
-                            </Col>
+                                        <div style={{'float': 'left', 'text-align': 'left'}}>{post.body}
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div style={{'float': 'right'}}>by {post.author}</div>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <EditDeleteLinks postID={post.id}/>
                         </Panel>
                         <ListComments comments={comments} postID={post.id}/>
                     </Row>
