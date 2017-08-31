@@ -14,7 +14,6 @@ class NewComment extends Component {
         dispatch(setPostId(match.params.id));
     }
 
-
     render() {
         const {categories, filters, history} = this.props;
         return (

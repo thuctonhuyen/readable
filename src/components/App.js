@@ -31,7 +31,7 @@ class App extends Component {
                 {["/:category", "/"].map
                 ((path, index) => <Route key={index} exact path={path} component={ListPosts}/>)}
                 <Route exact path="/add/newPost" component={NewPost}/>
-                <Route exact path="/add/newComment/:id" component={NewComment}/>
+                {/*<Route exact path="/add/newComment/:id" component={NewComment}/>*/}
                 <Route exact path="/:category/:id" component={PostDetail}/>
 
 

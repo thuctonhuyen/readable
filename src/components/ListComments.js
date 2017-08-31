@@ -1,18 +1,26 @@
 import React, {Component} from 'react';
 import {
-    Row, Panel, Button, Col, PanelGroup
+    Row, Panel, Button, Col, Collapse
 } from 'react-bootstrap'
 import Vote from './Vote'
 import {connect} from 'react-redux'
 import {convertTimestampToString} from '../utils/helpers'
 import {LinkContainer} from 'react-router-bootstrap';
 import {setFormType} from '../actions/filters_actions';
+import CreateEditForm from './CreateEditForm'
 
 //TODO: filters for comment section (sort by date, by vote)
 class ListComments extends Component {
 
+    handleAddComment = () => {
+        const {dispatch,filters} = this.props;
+
+        (filters.formType !== 'addComment') ? dispatch(setFormType('addComment'))
+        :dispatch(setFormType(null));
+    };
+
     render() {
-        const {comments, postID} = this.props;
+        const {comments, postID, filters} = this.props;
         return (
             <Panel header="Comments Section:">
                 {comments.map(comment =>
@@ -36,13 +44,17 @@ class ListComments extends Component {
                         </Col>
                     </Panel>
                 )}
+
                 <div style={{textAlign: 'center'}}>
-                    <LinkContainer to={`/add/newComment/${postID}`}>
-                        <Button bsStyle="primary">
-                            Add New Comment
-                        </Button>
-                    </LinkContainer>
+                    <Button bsStyle="primary" onClick={() => this.handleAddComment()}>
+                        Add New Comment
+                    </Button>
                 </div>
+                <Collapse in={filters.formType && filters.formType === 'addComment'}>
+                    <Panel>
+                        <CreateEditForm postID={postID}/>
+                    </Panel>
+                </Collapse>
             </Panel>
 
 
@@ -52,9 +64,9 @@ class ListComments extends Component {
     }
 }
 
-function mapStateToProps({comments}) {
+function mapStateToProps({comments, filters}) {
     return {
-        comments
+        comments, filters
     }
 
 }

@@ -9,6 +9,7 @@ import serializeForm from 'form-serialize';
 import {addPostAPI} from '../actions/posts_actions';
 import {addCommentAPI} from '../actions/comments_actions';
 import {LinkContainer} from 'react-router-bootstrap'
+import {setFormType} from '../actions/filters_actions';
 
 const uuidv4 = require('uuid/v4');
 class NewPost extends Component {
@@ -31,7 +32,7 @@ class NewPost extends Component {
 
         else if (formType === 'addComment') {
             this.handleAddNewComment(body, postID);
-            history.goBack();
+            //history.goBack();
         }
 
         else if (formType === 'editComment') {
@@ -42,7 +43,6 @@ class NewPost extends Component {
 
     };
 
-    //HISTORY PUSH TO GO BACK:
     handleAddNewPost = (body, category) => {
         const {dispatch} = this.props;
         body['id'] = (uuidv4());
@@ -57,6 +57,7 @@ class NewPost extends Component {
         body['timestamp'] = Date.now();
         body['parentId'] = postID;
         dispatch(addCommentAPI(body));
+        dispatch(setFormType(null));
     };
 
 
