@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Row, Collapse, Panel, Well} from 'react-bootstrap';
+import {Button, Row, Collapse, Well} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import CreateEditForm from './CreateEditForm';
 import {setFormType, setPostId, setCommentId} from '../actions/filters_actions'
@@ -18,7 +18,7 @@ class EditDeleteLinks extends Component {
                 dispatch(setPostId(null));
             }
         }
-        else {
+        else if(commentID) {
             if (filters.formType !== 'editComment') {
                 dispatch(setFormType('editComment'));
                 dispatch(setCommentId(commentID));
@@ -38,14 +38,17 @@ class EditDeleteLinks extends Component {
     handleCollapse(postID, commentID) {
         const {filters} = this.props;
 
-        return ((postID && filters.formType && filters.formType.includes('Post') && postID === filters.postID)
-        || commentID && filters.formType && filters.formType.includes('Comment') && commentID === filters.commentID);
+        if (postID && filters.formType && filters.formType.includes('Post') && postID === filters.postID)
+            return true;
+        if (commentID && filters.formType && filters.formType.includes('Comment') && commentID === filters.commentID)
+            return true;
+        return false;
 
     }
 
 
     render() {
-        const {filters, postID, commentID} = this.props;
+        const {postID, commentID} = this.props;
         return (
             <div>
                 <Row>

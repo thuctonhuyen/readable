@@ -6,7 +6,6 @@ import {voteCommentAPI } from '../actions/comments_actions';
 import '../css/Vote.css';
 
 
-
 class Vote extends Component {
     handleOnClick = (postID, commentID, option) => {
         const {dispatch} = this.props;

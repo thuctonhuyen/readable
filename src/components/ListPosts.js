@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Panel, Button} from 'react-bootstrap'
+import {Grid, Row, Col, Panel} from 'react-bootstrap'
 import FilterBar from './FilterBar'
 import {connect} from 'react-redux'
 

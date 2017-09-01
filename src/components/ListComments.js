@@ -5,7 +5,6 @@ import {
 import Vote from './Vote'
 import {connect} from 'react-redux'
 import {convertTimestampToString} from '../utils/helpers'
-import {LinkContainer} from 'react-router-bootstrap';
 import {setFormType} from '../actions/filters_actions';
 import CreateEditForm from './CreateEditForm'
 import EditDeleteLinks from './EditDeleteLinks';
@@ -26,7 +25,7 @@ class ListComments extends Component {
         return (
             <Panel header="Comments Section:">
                 {showingComments.map(comment =>
-                    <Panel>
+                    <Panel key={comment.id}>
                         <Row>
                             <Col xs={2} md={1}>
                                 <Vote commentID={comment.id} voteScore={comment.voteScore}/>

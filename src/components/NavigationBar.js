@@ -7,13 +7,7 @@ import {changeCategoriesFilter} from '../actions/filters_actions';
 import {Link} from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap';
 
-//TODO: anytime users click on navigation bar, then category in add new post will be reset
-//TODO: Categories tab should be changed accordingly to users click (all, ...)
 class NavigationBar extends Component {
-    componentDidMount() {
-        const {dispatch} = this.props;
-    }
-
     handleClick = (option) => {
         const {dispatch} = this.props;
         dispatch(changeCategoriesFilter(option));
@@ -21,7 +15,7 @@ class NavigationBar extends Component {
 
 
     render() {
-        const {categories, filters, match} = this.props;
+        const {categories} = this.props;
         let showingCategories = (categories) ? categories : [];
         return (
             <Navbar inverse collapseOnSelect>
@@ -56,9 +50,9 @@ class NavigationBar extends Component {
     }
 }
 
-function mapStateToProps({categories, filters}) {
+function mapStateToProps({categories}) {
     return {
-        categories, filters
+        categories
     }
 }
 

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Row, ButtonGroup, DropdownButton,
-    Button, MenuItem, Grid,
+    Row, ButtonGroup, DropdownButton, MenuItem, Grid,
 } from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {selectPostCategory, setFormType} from '../actions/filters_actions'
@@ -33,7 +32,7 @@ class NewPost extends Component {
                                 id="category-selector"
                                 onSelect={(eventKey) => this.handleOnSelection(eventKey)}>
                                 {categories.map(category =>
-                                    <MenuItem eventKey={category.name}
+                                    <MenuItem key={category} eventKey={category.name}
                                               active={filters.postCategory === category.name}>
                                         {category.name}
                                     </MenuItem>

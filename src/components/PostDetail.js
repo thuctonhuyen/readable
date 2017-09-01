@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Row, Panel, Button, Col
+    Row, Panel, Col
 } from 'react-bootstrap'
 import Vote from './Vote'
 import {connect} from 'react-redux'
@@ -22,8 +22,8 @@ class PostDetail extends Component {
         return (
             <Row className="show-grid">
                 {post.map(post =>
-                    <Row>
-                        <h4 style={{'text-align': 'center'}}>{post.title}</h4>
+                    <Row key={post.id}>
+                        <h4 style={{'textAlign': 'center'}}>{post.title}</h4>
                         <Panel>
                             <Row>
                                 <Col xs={2} md={1}>

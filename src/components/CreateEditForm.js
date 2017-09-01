@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-    Row,
     Button, FormGroup,
     ControlLabel, FormControl
 } from 'react-bootstrap'
@@ -8,7 +7,6 @@ import {connect} from 'react-redux';
 import serializeForm from 'form-serialize';
 import {addPostAPI, editPostAPI} from '../actions/posts_actions';
 import {addCommentAPI, editCommentAPI} from '../actions/comments_actions';
-import {LinkContainer} from 'react-router-bootstrap'
 import {setFormType, setPostId, setCommentId} from '../actions/filters_actions';
 const uuidv4 = require('uuid/v4');
 
@@ -18,7 +16,7 @@ class NewPost extends Component {
         e.preventDefault();
         const body = serializeForm(e.target, {hash: true});
 
-        const {filters, history} = this.props;
+        const {dispatch, filters, history} = this.props;
         const {formType, postID, commentID, postCategory} = filters;
 
 
@@ -37,7 +35,7 @@ class NewPost extends Component {
         else if (formType === 'editComment') {
             this.handleEditComment(body, commentID);
         }
-
+        dispatch(setFormType(null));
         e.target.reset();
     };
 
@@ -47,6 +45,7 @@ class NewPost extends Component {
         body['timestamp'] = Date.now();
         body['category'] = category;
         dispatch(addPostAPI(body));
+        dispatch(setPostId(null));
     };
 
     handleEditPost = (body, postID) => {
@@ -55,8 +54,6 @@ class NewPost extends Component {
 
         if(this.validationEditBody(body))
             dispatch(editPostAPI(postID, body));
-
-        dispatch(setFormType(null));
         dispatch(setPostId(null));
     };
 
@@ -66,14 +63,13 @@ class NewPost extends Component {
         body['timestamp'] = Date.now();
         body['parentId'] = postID;
         dispatch(addCommentAPI(body));
-        dispatch(setFormType(null));
+        dispatch(setCommentId(null));
     };
 
     handleEditComment = (body, commentID) => {
         const {dispatch} = this.props;
         if(this.validationEditBody(body))
             dispatch(editCommentAPI(commentID, body));
-        dispatch(setFormType(null));
         dispatch(setCommentId(null));
     };
 
