@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import serializeForm from 'form-serialize';
 import {addPostAPI, editPostAPI} from '../actions/posts_actions';
 import {addCommentAPI, editCommentAPI} from '../actions/comments_actions';
-import {setFormType, setPostId, setCommentId} from '../actions/filters_actions';
+import {setFormType, setPostId, setCommentId, selectPostCategory} from '../actions/filters_actions';
 const uuidv4 = require('uuid/v4');
 
 //TODO: check validation for required fields when adding post/comment
@@ -46,12 +46,11 @@ class NewPost extends Component {
         body['category'] = category;
         dispatch(addPostAPI(body));
         dispatch(setPostId(null));
+        dispatch(selectPostCategory(null));
     };
 
     handleEditPost = (body, postID) => {
         const {dispatch} = this.props;
-
-
         if(this.validationEditBody(body))
             dispatch(editPostAPI(postID, body));
         dispatch(setPostId(null));

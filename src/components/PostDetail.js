@@ -32,7 +32,7 @@ class PostDetail extends Component {
                                 <Col xs={10} md={11}>
                                     <Row>
 
-                                        <div style={{'float': 'left', 'text-align': 'left'}}>{post.body}
+                                        <div style={{'float': 'left', 'textAlign': 'left'}}>{post.body}
                                         </div>
                                     </Row>
                                     <Row>

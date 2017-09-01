@@ -32,7 +32,7 @@ class NewPost extends Component {
                                 id="category-selector"
                                 onSelect={(eventKey) => this.handleOnSelection(eventKey)}>
                                 {categories.map(category =>
-                                    <MenuItem key={category} eventKey={category.name}
+                                    <MenuItem key={category.name} eventKey={category.name}
                                               active={filters.postCategory === category.name}>
                                         {category.name}
                                     </MenuItem>

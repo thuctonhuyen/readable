@@ -2,21 +2,19 @@ import React, {Component} from 'react';
 import {Grid, Row, Col, Panel} from 'react-bootstrap'
 import FilterBar from './FilterBar'
 import {connect} from 'react-redux'
-
 import sortOn from 'sort-on'
 import {Link} from 'react-router-dom'
 import {getDetailPost} from '../actions/filters_actions';
 import Vote from './Vote'
 import EditDeleteLinks from './EditDeleteLinks';
-import {getBriefBody} from '../utils/helpers'
+import {getBriefBody, sortList} from '../utils/helpers'
+import {changeSortByFilter} from '../actions/filters_actions'
 
 //TODO: sort date descendingly
 class ListPosts extends Component {
-
-    sortPost(posts, option) {
-        if (option === 'voteScore')
-            option = `-${option}`;
-        return (sortOn(posts, option));
+    componentDidMount(){
+        const {dispatch} = this.props;
+        dispatch(changeSortByFilter('voteScore'));
     }
 
     handlePostDetail = (id) => {
@@ -38,7 +36,7 @@ class ListPosts extends Component {
                 : showingPosts.filter((post) => !post.deleted && post.category === category);
         }
 
-        showingPosts = this.sortPost(showingPosts, filters.sortBy);
+        showingPosts = sortList(showingPosts, filters.sortBy);
 
         return (
             <Row>

@@ -32,7 +32,14 @@ class EditDeleteLinks extends Component {
 
     handleDelete = () => {
         const {dispatch, postID, commentID} = this.props;
-        (postID) ? dispatch(deletePostAPI(postID)) : dispatch(deleteCommentAPI(commentID));
+        if(postID) {
+            dispatch(deletePostAPI(postID));
+
+        }else {
+            dispatch(deleteCommentAPI(commentID));
+        }
+
+
     };
 
     handleCollapse(postID, commentID) {

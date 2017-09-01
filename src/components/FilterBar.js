@@ -20,8 +20,6 @@ class FilterBar extends Component {
                           active={filters.sortBy === 'voteScore'}>By Vote</MenuItem>
                 <MenuItem eventKey={'timestamp'}
                           active={filters.sortBy === 'timestamp'}>By Date</MenuItem>
-                <MenuItem eventKey={'title'}
-                          active={filters.sortBy === 'title'}>By Title</MenuItem>
             </SplitButton>
         );
     }

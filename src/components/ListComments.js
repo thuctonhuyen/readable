@@ -8,9 +8,16 @@ import {convertTimestampToString} from '../utils/helpers'
 import {setFormType} from '../actions/filters_actions';
 import CreateEditForm from './CreateEditForm'
 import EditDeleteLinks from './EditDeleteLinks';
+import FilterBar from './FilterBar'
+import {changeSortByFilter} from '../actions/filters_actions'
+import {sortList} from '../utils/helpers'
 
-//TODO: filters for comment section (sort by date, by vote)
 class ListComments extends Component {
+
+        componentDidMount(){
+        const {dispatch} = this.props;
+        dispatch(changeSortByFilter('voteScore'));
+    }
 
     handleAddComment = () => {
         const {dispatch, filters} = this.props;
@@ -22,32 +29,40 @@ class ListComments extends Component {
     render() {
         const {comments, postID, filters} = this.props;
         let showingComments = comments.filter((comment) => !comment.deleted);
+        showingComments = sortList(showingComments, filters.sortBy);
         return (
             <Panel header="Comments Section:">
-                {showingComments.map(comment =>
-                    <Panel key={comment.id}>
-                        <Row>
-                            <Col xs={2} md={1}>
-                                <Vote commentID={comment.id} voteScore={comment.voteScore}/>
-                            </Col>
-                            <Col xs={10} md={11}>
-                                <Row> <Col xs={5} xsPush={0}>
-                                    {comment.author} says: </Col>
-                                </Row>
-                                <Row> <Col xs={11} xsPush={1}>
-                                    {comment.body}
+                <Row className="show-grid">
+                    <div style={{float: 'right'}}><FilterBar/></div>
+                </Row>
+                <br/>
+                <div>
+                    {showingComments.map(comment =>
+                        <Panel key={comment.id}>
+                            <Row>
+                                <Col xs={2} md={1}>
+                                    <Vote commentID={comment.id} voteScore={comment.voteScore}/>
                                 </Col>
-                                </Row>
-                                <Row>
-                                    <div style={{'float': 'right'}}>
-                                        {convertTimestampToString(comment.timestamp)}
-                                    </div>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <EditDeleteLinks commentID={comment.id}/>
-                    </Panel>
-                )}
+                                <Col xs={10} md={11}>
+                                    <Row> <Col xs={5} xsPush={0}>
+                                        {comment.author} says: </Col>
+                                    </Row>
+                                    <Row> <Col xs={11} xsPush={1}>
+                                        {comment.body}
+                                    </Col>
+                                    </Row>
+                                    <Row>
+                                        <div style={{'float': 'right'}}>
+                                            {convertTimestampToString(comment.timestamp)}
+                                        </div>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <EditDeleteLinks commentID={comment.id}/>
+                        </Panel>
+                    )}
+                </div>
+
 
                 <div style={{textAlign: 'center'}}>
                     <Button bsStyle="primary" onClick={() => this.handleAddComment()}>

@@ -1,6 +1,8 @@
 /**
  * Created by thuct on 8/27/2017.
  */
+import sortOn from 'sort-on'
+
 export function convertTimestampToString(timestamp) {
     let d = new Date();
     let dformat = 'at ' + [d.getHours(),
@@ -19,4 +21,10 @@ export function getBriefBody(body){
     else{
         return 'No Content';
     }
+}
+
+export function sortList(objList, option) {
+    if (option === 'voteScore' || option==='timestamp')
+        option = `-${option}`;
+    return (sortOn(objList, option));
 }
