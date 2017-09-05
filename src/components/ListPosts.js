@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Grid, Row, Col, Panel} from 'react-bootstrap'
 import FilterBar from './FilterBar'
 import {connect} from 'react-redux'
-import sortOn from 'sort-on'
 import {Link} from 'react-router-dom'
 import {getDetailPost} from '../actions/filters_actions';
 import Vote from './Vote'
@@ -10,7 +9,6 @@ import EditDeleteLinks from './EditDeleteLinks';
 import {getBriefBody, sortList} from '../utils/helpers'
 import {changeSortByFilter} from '../actions/filters_actions'
 
-//TODO: sort date descendingly
 class ListPosts extends Component {
     componentDidMount(){
         const {dispatch} = this.props;
