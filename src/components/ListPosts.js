@@ -22,7 +22,7 @@ class ListPosts extends Component {
     };
 
     render() {
-        const {posts, filters, match} = this.props;
+        const {posts, filters, match, history} = this.props;
         let category = (match.params.category);
 
         // dispatch(getPostsForCategoryAPI(category));
@@ -53,13 +53,13 @@ class ListPosts extends Component {
                                     <Col xs={10} md={11}>
                                         <Link to={`/${post.category}/${post.id}`}
                                               onClick={() => this.handlePostDetail(post.id)}>
-                                            <h4>{post.title}</h4>
+                                            <h4>{post.title} by {post.author}</h4>
                                         </Link>
                                         <p>{getBriefBody(post.body)} </p>
                                     </Col>
                                 </Row>
 
-                                <EditDeleteLinks postID={post.id}/>
+                                <EditDeleteLinks postID={post.id} history={history}/>
 
                             </Panel>
                         </Row>

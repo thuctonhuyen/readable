@@ -16,7 +16,7 @@ class PostDetail extends Component {
     }
 
     render() {
-        const {posts, comments, match} = this.props;
+        const {posts, comments, match, history} = this.props;
         let post = (match.params.id) ?
             posts.filter(post => post.id === match.params.id && !post.deleted) : [];
         return (
@@ -40,7 +40,7 @@ class PostDetail extends Component {
                                     </Row>
                                 </Col>
                             </Row>
-                            <EditDeleteLinks postID={post.id}/>
+                            <EditDeleteLinks postID={post.id} history={history}/>
                         </Panel>
                         <ListComments comments={comments} postID={post.id}/>
                     </Row>

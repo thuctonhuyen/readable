@@ -98,7 +98,7 @@ class NewPost extends Component {
 
                 <FormGroup>
                     <ControlLabel>Body of Content:</ControlLabel>
-                    <FormControl type="text" name="body" placeholder="Fill in content here..."/>
+                    <FormControl  componentClass="textarea"  name="body" placeholder="Fill in content here..."/>
                 </FormGroup>
 
                 <FormGroup>

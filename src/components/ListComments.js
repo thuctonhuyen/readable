@@ -31,8 +31,9 @@ class ListComments extends Component {
         let showingComments = comments.filter((comment) => !comment.deleted);
         showingComments = sortList(showingComments, filters.sortBy);
         return (
-            <Panel header="Comments Section:">
+            <Panel header="Comments Section :">
                 <Row className="show-grid">
+                    <div style={{float:'left'}}>Total comments: {showingComments.length}</div>
                     <div style={{float: 'right'}}><FilterBar/></div>
                 </Row>
                 <br/>

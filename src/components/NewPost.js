@@ -14,7 +14,7 @@ class NewPost extends Component {
 
     };
 
-    componentDidMount(){
+    componentDidMount() {
         const {dispatch} = this.props;
         dispatch(setFormType('addPost'));
     }
@@ -41,9 +41,9 @@ class NewPost extends Component {
                         </ButtonGroup>
                     </Row>
                     <Row style={{'display': filters.postCategory !== null ? 'grid' : 'none'}}>
-                        <form style={{'padding-top': '10px'}}>
-                            <CreateEditForm history={history}/>
-                        </form>
+
+                        <CreateEditForm history={history}/>
+
                     </Row>
                 </Grid>
             </Row>
