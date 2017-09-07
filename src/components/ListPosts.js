@@ -8,6 +8,7 @@ import Vote from './Vote'
 import EditDeleteLinks from './EditDeleteLinks';
 import {getBriefBody, sortList, getRenderContent} from '../utils/helpers'
 import {changeSortByFilter} from '../actions/filters_actions'
+import BlankPage from './BlankPage';
 
 class ListPosts extends Component {
     componentDidMount() {
@@ -39,7 +40,9 @@ class ListPosts extends Component {
             return accumulator;
         }, ['']);
 
-        let renderContent =
+        let renderContent = showingPosts.length === 0
+            ? <BlankPage/>
+            :
             <Row>
                 <Grid>
                     <Row className="show-grid">

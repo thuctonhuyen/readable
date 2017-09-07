@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon} from 'react-bootstrap';
-
 import {changeCategoriesFilter} from '../actions/filters_actions';
-
 import {Link} from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap';
 
@@ -12,7 +10,6 @@ class NavigationBar extends Component {
         const {dispatch} = this.props;
         dispatch(changeCategoriesFilter(option));
     };
-
 
     render() {
         const {categories} = this.props;
@@ -32,8 +29,8 @@ class NavigationBar extends Component {
                         <NavDropdown title="Categories" id="basic-nav-dropdown">
                             {showingCategories.map((category) =>
                                 <LinkContainer key={category.name}
-                                    to={`/${category.name}`}
-                                    onClick={() => this.handleClick(category.name)}>
+                                               to={`/${category.name}`}
+                                               onClick={() => this.handleClick(category.name)}>
                                     <MenuItem>{category.name} </MenuItem>
                                 </LinkContainer>
                             )}

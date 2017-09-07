@@ -4,7 +4,6 @@ import {Jumbotron, Glyphicon} from 'react-bootstrap'
 
 class Error404 extends Component {
 
-
     render() {
         return (
             <Jumbotron>
@@ -15,6 +14,5 @@ class Error404 extends Component {
         );
     }
 }
-
 
 export default (Error404);

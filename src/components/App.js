@@ -9,7 +9,7 @@ import PostDetail from './PostDetail'
 import {connect} from 'react-redux'
 import {fetchAllPosts} from '../actions/posts_actions';
 import {fetchAllCategories} from '../actions/categories_actions';
-import {withRouter, Switch, Redirect} from 'react-router-dom'
+import {withRouter, Switch} from 'react-router-dom'
 import Error404 from './Error404'
 
 class App extends Component {
@@ -19,7 +19,6 @@ class App extends Component {
         dispatch(fetchAllPosts());
         dispatch(fetchAllCategories());
     }
-
 
     render() {
         return (
@@ -34,12 +33,9 @@ class App extends Component {
                     <Route exact path="/:category/:id" component={PostDetail}/>
                     <Route component={Error404}/>
                 </Switch>
-
-
             </Grid>
         );
     }
 }
-
 
 export default  withRouter(connect()(App));

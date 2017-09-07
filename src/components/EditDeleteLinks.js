@@ -18,7 +18,7 @@ class EditDeleteLinks extends Component {
                 dispatch(setPostId(null));
             }
         }
-        else if(commentID) {
+        else if (commentID) {
             if (filters.formType !== 'editComment') {
                 dispatch(setFormType('editComment'));
                 dispatch(setCommentId(commentID));
@@ -31,10 +31,10 @@ class EditDeleteLinks extends Component {
 
     handleDelete = () => {
         const {dispatch, postID, commentID, history} = this.props;
-        if(postID) {
+        if (postID) {
             dispatch(deletePostAPI(postID));
             history.push("/");
-        }else {
+        } else {
             dispatch(deleteCommentAPI(commentID));
         }
 
@@ -51,7 +51,6 @@ class EditDeleteLinks extends Component {
         return false;
 
     }
-
 
     render() {
         const {postID, commentID, filters} = this.props;
