@@ -56,7 +56,12 @@ class EditDeleteLinks extends Component {
 
 
     render() {
-        const {postID, commentID} = this.props;
+        const {postID, commentID, filters} = this.props;
+
+        //only show createEditForm when needed
+        let createEditForm = (filters.formType && filters.formType === 'editPost' || filters.formType === 'editComment')
+            ? <CreateEditForm/> : '';
+
         return (
             <div>
                 <Row>
@@ -69,7 +74,7 @@ class EditDeleteLinks extends Component {
                 <Row>
                     <Collapse in={this.handleCollapse(postID, commentID)}>
                         <Well>
-                            <CreateEditForm/>
+                            {createEditForm}
                         </Well>
                     </Collapse>
                 </Row>

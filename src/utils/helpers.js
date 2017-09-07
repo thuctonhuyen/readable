@@ -28,3 +28,17 @@ export function sortList(objList, option) {
         option = `-${option}`;
     return (sortOn(objList, option));
 }
+
+export function getDefaultValue(formType, editingPost = {}, editingComment = {}, field) {
+    if(formType === 'editPost'){
+        return editingPost[field];
+    }
+    else if(formType === 'editComment'){
+        return (editingComment[field])
+        ? editingComment[field] : '';
+    }
+    else{
+        return '';
+    }
+
+}

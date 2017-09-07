@@ -8,9 +8,9 @@ import serializeForm from 'form-serialize';
 import {addPostAPI, editPostAPI} from '../actions/posts_actions';
 import {addCommentAPI, editCommentAPI} from '../actions/comments_actions';
 import {setFormType, setPostId, setCommentId, selectPostCategory} from '../actions/filters_actions';
+import {getDefaultValue} from '../utils/helpers'
 const uuidv4 = require('uuid/v4');
 
-//TODO: check validation for required fields when adding post/comment
 class NewPost extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault();
@@ -51,7 +51,7 @@ class NewPost extends Component {
 
     handleEditPost = (body, postID) => {
         const {dispatch} = this.props;
-        if(this.validationEditBody(body))
+        if (this.validationEditBody(body))
             dispatch(editPostAPI(postID, body));
         dispatch(setPostId(null));
     };
@@ -67,25 +67,42 @@ class NewPost extends Component {
 
     handleEditComment = (body, commentID) => {
         const {dispatch} = this.props;
-        if(this.validationEditBody(body))
+        if (this.validationEditBody(body))
             dispatch(editCommentAPI(commentID, body));
         dispatch(setCommentId(null));
     };
 
-    validationEditBody(body){
-        for(let key of Object.keys(body)){
-            if(!body[key])
+    validationEditBody(body) {
+        for (let key of Object.keys(body)) {
+            if (!body[key])
                 delete body[key];
         }
-
         return (body);
     }
 
 
     render() {
         const {filters} = this.props;
+        const {formType, postID, commentID} = filters;
+
+        let editingPost = {};
+        let editingComment = {};
+        if (formType === 'editPost') {
+            const {posts} = this.props;
+            editingPost = (posts.filter((post) => post.id === postID))[0];
+
+        }
+        else if (formType === 'editComment') {
+            const {comments} = this.props;
+            editingComment = (comments.filter((comment) => comment.id === commentID))[0];
+        }
+
+        const title = getDefaultValue(formType, editingPost, editingComment, 'title');
+        const body = getDefaultValue(formType, editingPost, editingComment, 'body');
+        const author = getDefaultValue(formType, editingPost, editingComment, 'author');
+
         return (
-            <form onSubmit={(e) =>
+            <form style={{display: postID || commentID}} onSubmit={(e) =>
                 this.handleOnSubmit(e)}>
 
                 <FormGroup style={{
@@ -93,17 +110,26 @@ class NewPost extends Component {
                     || filters.formType === 'editPost' ? 'block' : 'none')
                 }}>
                     <ControlLabel>Title:</ControlLabel>
-                    <FormControl type="text" name="title" placeholder="Fill in title here..."/>
+                    <FormControl
+                        defaultValue={title}
+                        type="text" name="title"
+                        placeholder="Fill in title here..."/>
                 </FormGroup>
 
                 <FormGroup>
                     <ControlLabel>Body of Content:</ControlLabel>
-                    <FormControl  componentClass="textarea"  name="body" placeholder="Fill in content here..."/>
+                    <FormControl
+                        defaultValue={body}
+                        componentClass="textarea" name="body"
+                        placeholder="Fill in content here..."/>
                 </FormGroup>
 
                 <FormGroup>
                     <ControlLabel>Name of Author:</ControlLabel>
-                    <FormControl type="text" name="author" placeholder="Fill in name of author here..."/>
+                    <FormControl
+                        defaultValue={author}
+                        type="text" name="author"
+                        placeholder="Fill in name of author here..."/>
                 </FormGroup>
 
                 <div style={{textAlign: 'center'}}>
@@ -116,9 +142,9 @@ class NewPost extends Component {
     }
 }
 
-function mapStateToProps({filters}) {
+function mapStateToProps({filters, posts, comments}) {
     return {
-        filters
+        filters, posts, comments
     }
 }
 
