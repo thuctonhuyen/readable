@@ -84,7 +84,6 @@ function mapStateToProps({comments, filters}) {
     return {
         comments, filters
     }
-
 }
 
 export default connect(mapStateToProps)(ListComments);

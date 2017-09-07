@@ -13,8 +13,7 @@ import {withRouter, Switch} from 'react-router-dom'
 import Error404 from './Error404'
 
 class App extends Component {
-
-    componentDidMount() {
+    componentWillMount() {
         const {dispatch} = this.props;
         dispatch(fetchAllPosts());
         dispatch(fetchAllCategories());
