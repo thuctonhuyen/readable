@@ -22,17 +22,17 @@ class ListPosts extends Component {
 
     };
 
+    getShowingPosts = (posts, category) => {
+        return (!category || category.trim() === '')
+            ? posts.filter((post) => !post.deleted)
+            : posts.filter((post) => !post.deleted && post.category === category);
+    };
+
     render() {
         const {posts, filters, match, categories} = this.props;
         let category = (match.params.category) ? match.params.category : '';
 
-        let showingPosts = (posts) ? posts : [];
-        if (showingPosts) {
-            showingPosts = (!category || category.trim() === '')
-                ? showingPosts.filter((post) => !post.deleted)
-                : showingPosts.filter((post) => !post.deleted && post.category === category);
-        }
-
+        let showingPosts = (posts) ? this.getShowingPosts(posts, category) : [];
         showingPosts = sortList(showingPosts, filters.sortBy);
 
         let new_categories = categories.reduce((accumulator, currentValue) => {
@@ -40,7 +40,7 @@ class ListPosts extends Component {
             return accumulator;
         }, ['']);
 
-        let renderContent = showingPosts.length === 0
+        let renderContent = (showingPosts.length === 0)
             ? <BlankPage/>
             :
             <Row>
