@@ -23,7 +23,7 @@ class ListPosts extends Component {
     };
 
     render() {
-        const {posts, filters, match, history, categories} = this.props;
+        const {posts, filters, match, categories} = this.props;
         let category = (match.params.category) ? match.params.category : '';
 
         let showingPosts = (posts) ? posts : [];
@@ -65,7 +65,7 @@ class ListPosts extends Component {
                                     </Col>
                                 </Row>
 
-                                <EditDeleteLinks postID={post.id} history={history}/>
+                                <EditDeleteLinks postID={post.id}/>
 
                             </Panel>
                         </Row>

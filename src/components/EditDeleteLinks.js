@@ -30,10 +30,9 @@ class EditDeleteLinks extends Component {
     };
 
     handleDelete = () => {
-        const {dispatch, postID, commentID, history} = this.props;
+        const {dispatch, postID, commentID} = this.props;
         if (postID) {
             dispatch(deletePostAPI(postID));
-            history.push("/");
         } else {
             dispatch(deleteCommentAPI(commentID));
         }
