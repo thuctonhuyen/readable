@@ -97,10 +97,6 @@ class NewPost extends Component {
             editingComment = (comments.filter((comment) => comment.id === commentID))[0];
         }
 
-        const title = getDefaultValue(formType, editingPost, editingComment, 'title');
-        const body = getDefaultValue(formType, editingPost, editingComment, 'body');
-        const author = getDefaultValue(formType, editingPost, editingComment, 'author');
-
         return (
             <form style={{display: postID || commentID}} onSubmit={(e) =>
                 this.handleOnSubmit(e)}>
@@ -111,7 +107,7 @@ class NewPost extends Component {
                 }}>
                     <ControlLabel>Title:</ControlLabel>
                     <FormControl
-                        defaultValue={title}
+                        defaultValue={getDefaultValue(formType, editingPost, editingComment, 'title')}
                         type="text" name="title"
                         placeholder="Fill in title here..."/>
                 </FormGroup>
@@ -119,7 +115,7 @@ class NewPost extends Component {
                 <FormGroup>
                     <ControlLabel>Body of Content:</ControlLabel>
                     <FormControl
-                        defaultValue={body}
+                        defaultValue={getDefaultValue(formType, editingPost, editingComment, 'body')}
                         componentClass="textarea" name="body"
                         placeholder="Fill in content here..."/>
                 </FormGroup>
@@ -127,7 +123,7 @@ class NewPost extends Component {
                 <FormGroup>
                     <ControlLabel>Name of Author:</ControlLabel>
                     <FormControl
-                        defaultValue={author}
+                        defaultValue={getDefaultValue(formType, editingPost, editingComment, 'author')}
                         type="text" name="author"
                         placeholder="Fill in name of author here..."/>
                 </FormGroup>
