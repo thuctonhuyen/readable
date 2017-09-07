@@ -2,6 +2,8 @@
  * Created by thuct on 8/27/2017.
  */
 import sortOn from 'sort-on'
+import Error404 from '../components/Error404'
+import React from 'react'
 
 export function convertTimestampToString(timestamp) {
     let d = new Date();
@@ -40,5 +42,9 @@ export function getDefaultValue(formType, editingPost = {}, editingComment = {},
     else{
         return '';
     }
+}
+
+export function getRenderContent(condition, renderContent){
+    return (condition) ? renderContent : <Error404/>;
 
 }

@@ -6,11 +6,11 @@ import {Link} from 'react-router-dom'
 import {getDetailPost} from '../actions/filters_actions';
 import Vote from './Vote'
 import EditDeleteLinks from './EditDeleteLinks';
-import {getBriefBody, sortList} from '../utils/helpers'
+import {getBriefBody, sortList, getRenderContent} from '../utils/helpers'
 import {changeSortByFilter} from '../actions/filters_actions'
 
 class ListPosts extends Component {
-    componentDidMount(){
+    componentDidMount() {
         const {dispatch} = this.props;
         dispatch(changeSortByFilter('voteScore'));
     }
@@ -22,12 +22,10 @@ class ListPosts extends Component {
     };
 
     render() {
-        const {posts, filters, match, history} = this.props;
-        let category = (match.params.category);
+        const {posts, filters, match, history, categories} = this.props;
+        let category = (match.params.category) ? match.params.category : '';
 
-        // dispatch(getPostsForCategoryAPI(category));
         let showingPosts = (posts) ? posts : [];
-
         if (showingPosts) {
             showingPosts = (!category || category.trim() === '')
                 ? showingPosts.filter((post) => !post.deleted)
@@ -36,7 +34,12 @@ class ListPosts extends Component {
 
         showingPosts = sortList(showingPosts, filters.sortBy);
 
-        return (
+        let new_categories = categories.reduce((accumulator, currentValue) => {
+            accumulator.push(currentValue.name);
+            return accumulator;
+        }, ['']);
+
+        let renderContent =
             <Row>
                 <Grid>
                     <Row className="show-grid">
@@ -65,8 +68,12 @@ class ListPosts extends Component {
                         </Row>
                     )}
                 </Grid>
-            </Row>
+            </Row>;
 
+        renderContent = getRenderContent(Boolean(new_categories.includes(category)), renderContent);
+
+        return (
+            renderContent
         );
     }
 }

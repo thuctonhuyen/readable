@@ -28,12 +28,10 @@ class App extends Component {
                     <NavigationBar/>
                 </Row>
                 <Switch>
-                    <Route exact path="/404" component={Error404}/>
                     {["/:category", "/"].map((path, index) => <Route key={index} exact path={path}
                                                                      component={ListPosts}/>)}
                     <Route exact path="/add/newPost" component={NewPost}/>
                     <Route exact path="/:category/:id" component={PostDetail}/>
-                    <Redirect to="/404" />
                     <Route component={Error404}/>
                 </Switch>
 

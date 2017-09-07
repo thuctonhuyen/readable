@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import ListComments from './ListComments'
 import {fetchCommentsForPost} from '../actions/comments_actions'
 import EditDeleteLinks from './EditDeleteLinks';
+import {getRenderContent} from '../utils/helpers'
 
 class PostDetail extends Component {
 
@@ -17,9 +18,11 @@ class PostDetail extends Component {
 
     render() {
         const {posts, comments, match, history} = this.props;
+
         let post = (match.params.id) ?
             posts.filter(post => post.id === match.params.id && !post.deleted) : [];
-        return (
+
+        let renderContent =
             <Row className="show-grid">
                 {post.map(post =>
                     <Row key={post.id}>
@@ -47,6 +50,12 @@ class PostDetail extends Component {
                 )}
 
             </Row>
+        ;
+
+        renderContent = getRenderContent(Boolean(post.length > 0), renderContent);
+
+        return (
+            renderContent
         );
     }
 }
