@@ -9,7 +9,8 @@ import PostDetail from './PostDetail'
 import {connect} from 'react-redux'
 import {fetchAllPosts} from '../actions/posts_actions';
 import {fetchAllCategories} from '../actions/categories_actions';
-import {withRouter} from 'react-router-dom'
+import {withRouter, Switch, Redirect} from 'react-router-dom'
+import Error404 from './Error404'
 
 class App extends Component {
 
@@ -26,10 +27,15 @@ class App extends Component {
                 <Row>
                     <NavigationBar/>
                 </Row>
-
-                {["/:category", "/"].map((path, index) => <Route key={index} exact path={path} component={ListPosts}/>)}
-                <Route exact path="/add/newPost" component={NewPost}/>
-                <Route exact path="/:category/:id" component={PostDetail}/>
+                <Switch>
+                    <Route exact path="/404" component={Error404}/>
+                    {["/:category", "/"].map((path, index) => <Route key={index} exact path={path}
+                                                                     component={ListPosts}/>)}
+                    <Route exact path="/add/newPost" component={NewPost}/>
+                    <Route exact path="/:category/:id" component={PostDetail}/>
+                    <Redirect to="/404" />
+                    <Route component={Error404}/>
+                </Switch>
 
 
             </Grid>
