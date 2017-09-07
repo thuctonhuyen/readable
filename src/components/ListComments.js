@@ -14,7 +14,7 @@ import {sortList} from '../utils/helpers'
 
 class ListComments extends Component {
 
-        componentDidMount(){
+    componentDidMount() {
         const {dispatch} = this.props;
         dispatch(changeSortByFilter('voteScore'));
     }
@@ -33,7 +33,7 @@ class ListComments extends Component {
         return (
             <Panel header="Comments Section :">
                 <Row className="show-grid">
-                    <div style={{float:'left'}}>Total comments: {showingComments.length}</div>
+                    <div style={{float: 'left'}}>Total comments: {showingComments.length}</div>
                     <div style={{float: 'right'}}><FilterBar/></div>
                 </Row>
                 <br/>
