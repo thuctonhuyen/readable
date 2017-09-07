@@ -59,7 +59,7 @@ class EditDeleteLinks extends Component {
         const {postID, commentID, filters} = this.props;
 
         //only show createEditForm when needed
-        let createEditForm = (filters.formType && filters.formType === 'editPost' || filters.formType === 'editComment')
+        let createEditForm = (filters.formType && (filters.formType === 'editPost' || filters.formType === 'editComment'))
             ? <CreateEditForm/> : '';
 
         return (
